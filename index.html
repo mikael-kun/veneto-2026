@@ -272,6 +272,17 @@
   .tab.on svg{opacity:1;}
   .tab.on span{font-weight:500;}
   @media (max-width:400px){ .tab{font-size:10px;} .tab svg{width:20px;height:20px;} }
+  /* ===== checkable items ===== */
+  .todo li{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;}
+  .row.check{cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;align-items:flex-start;gap:11px;}
+  .row.check .box{width:17px;height:17px;border:1.5px solid var(--terra);border-radius:3px;flex-shrink:0;margin-top:3px;}
+  .row.check .rowmain{flex:1;display:flex;justify-content:space-between;gap:16px;}
+  .box{transition:background .15s ease,border-color .15s ease;position:relative;}
+  .done .box{background:var(--wine);border-color:var(--wine);}
+  .done .box::after{content:"";position:absolute;left:5px;top:1px;width:4px;height:9px;border:solid #fbf6ec;border-width:0 2px 2px 0;transform:rotate(45deg);}
+  .todo li.done > span:last-child{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(94,81,66,.5);opacity:.7;}
+  .row.check.done .k,.row.check.done .v{color:var(--ink-soft);text-decoration:line-through;text-decoration-color:rgba(94,81,66,.45);opacity:.68;}
+  @media (max-width:480px){ .row.check .rowmain{flex-wrap:wrap;} }
 </style>
 </head>
 <body>
@@ -334,7 +345,7 @@
 
       <div class="day">
         <div class="when"><div class="dnum">8</div><div class="dwd">Wed</div></div>
-        <div class="body"><div class="dh">Arrive Venice</div><div class="dtxt"><b>05:30–05:35 · Bolt to HEL</b> (Hyundai Ioniq, GNV-974) from Vanhanlinnankuja 1 to Terminal 2 Departures. Fly <b>07:05</b>, land <b>VCE 09:05</b>. <b>ATVO bus</b> to Piazzale Roma (~20 min), then a short walk via the <b>Ponte delle Guglie</b> to P 1779 — at the door around <b>11:00–11:30</b> (Max's route). A light <b>cicchetti lunch</b> once you're settled — <b>Un Mondo Divino</b> is the easy default (walk-in, ~10 min toward Santi Apostoli). An easy first afternoon wandering San Marco and the canals. <b>19:15 · dinner at Anice Stellato</b> — a beloved seafood osteria back in your own Cannaregio, a short walk from the B&amp;B (2 guests).</div></div>
+        <div class="body"><div class="dh">Arrive Venice</div><div class="dtxt"><b>05:30–05:35 · Bolt to HEL</b> (Hyundai Ioniq, GNV-974) from Vanhanlinnankuja 1 to Terminal 2 Departures. Fly <b>07:05</b>, land <b>VCE 09:05</b>. <b>ATVO bus</b> to Piazzale Roma (~20 min), then a short walk via the <b>Ponte delle Guglie</b> to P 1779 — at the door around <b>11:00–11:30</b> (Max's route). A light <b>cicchetti lunch</b> once you're settled — <b>Un Mondo Divino</b> is the easy default (walk-in, ~10 min toward Santi Apostoli). An easy first afternoon wandering San Marco and the canals. <b>19:15 · dinner at Anice Stellato</b> — a beloved seafood osteria back in your own Cannaregio, a short walk from the B&amp;B (2 guests). <a class="qr-link" href="https://maps.google.com/?daddr=C8WH+HC%20Venezia,%20Citt%C3%A0%20Metropolitana%20di%20Venezia">Directions</a>.</div></div>
       </div>
 
       <div class="day hl">
@@ -373,11 +384,11 @@
       <div class="rc-sub">A slow start on the Piazza, then a north-to-south amble through the bàcari and antique dealers.</div>
       <div class="stop">
         <div class="st-time">10:00</div>
-        <div><div class="st-name">Palazzo Ducale <span class="st-area">· San Marco</span></div><div class="st-note">The Doge's Palace, done empty-handed before any shopping (bags go through security). Combined St Mark's Square Museums ticket, €30/adult — <b>codes 96PWIDWO35 &amp; X8HZD6UUMY.</b></div></div>
+        <div><div class="st-name">Palazzo Ducale <span class="st-area">· San Marco</span></div><div class="st-note">The Doge's Palace, done empty-handed before any shopping (bags go through security). Combined St Mark's Square Museums ticket, €30/adult — <b>codes 96PWIDWO35 &amp; X8HZD6UUMY.</b> <a class="qr-link" href="DUCALE.pdf">Tickets (PDF)</a></div></div>
       </div>
       <div class="stop">
         <div class="st-time">11:30</div>
-        <div><div class="st-name">Museo Correr <span class="st-area">· San Marco</span></div><div class="st-note">Across the Piazza, on the same combined ticket — imperial rooms and Venetian painting. A relaxed hour before lunch. <b>Codes 1K3X3WUHMW &amp; 9N3OCUWEHT.</b></div></div>
+        <div><div class="st-name">Museo Correr <span class="st-area">· San Marco</span></div><div class="st-note">Across the Piazza, on the same combined ticket — imperial rooms and Venetian painting. A relaxed hour before lunch. <b>Codes 1K3X3WUHMW &amp; 9N3OCUWEHT.</b> <a class="qr-link" href="CORRER.pdf">Tickets (PDF)</a></div></div>
       </div>
       <div class="stop">
         <div class="st-time">~12:45</div>
@@ -406,15 +417,15 @@
       <div class="rc-sub">Lunch east in Castello, the Biennale next door, then west to the concert.</div>
       <div class="stop">
         <div class="st-time">13:00</div>
-        <div><div class="st-name">Corte Sconta <span class="st-area">· Castello 3886</span></div><div class="st-note">Lunch — a famed Venetian seafood institution; the appetiser tasting is the order. Make this the big, leisurely meal so the evening stays unrushed. <b>Reservation E637T3DTWPW.</b></div></div>
+        <div><div class="st-name">Corte Sconta <span class="st-area">· Castello 3886</span></div><div class="st-note">Lunch — a famed Venetian seafood institution; the appetiser tasting is the order. Make this the big, leisurely meal so the evening stays unrushed. <b>Reservation E637T3DTWPW.</b> <a class="qr-link" href="https://maps.google.com/maps?q=Sestiere%20Castello%203886,%20Venezia,%20Veneto%2030122">Map</a> · <a class="qr-link" href="tel:+39041227024">Call</a> · <a class="qr-link" href="https://www.cortescontave.com/">Site</a></div></div>
       </div>
       <div class="stop">
         <div class="st-time">~15:00</div>
-        <div><div class="st-name">Arsenale · Biennale Arte 2026 <span class="st-area">· Castello</span></div><div class="st-note">~8 min walk from lunch. “In Minor Keys” in the historic shipyards — only open to walk through during the Biennale; allow ~2–3 hrs. <b>Tickets L3TT8OWXFK &amp; WGGG9BWEEE</b> (each also covers the Giardini); a Visitors' Lions voting link arrives by email afterwards.</div></div>
+        <div><div class="st-name">Arsenale · Biennale Arte 2026 <span class="st-area">· Castello</span></div><div class="st-note">~8 min walk from lunch. “In Minor Keys” in the historic shipyards — only open to walk through during the Biennale; allow ~2–3 hrs. <b>Tickets L3TT8OWXFK &amp; WGGG9BWEEE</b> (each also covers the Giardini); a Visitors' Lions voting link arrives by email afterwards. <a class="qr-link" href="biennale.pdf">Tickets (PDF)</a></div></div>
       </div>
       <div class="stop">
         <div class="st-time">~19:30</div>
-        <div><div class="st-name">Teatro La Fenice <span class="st-area">· San Marco</span></div><div class="st-note"><b>20:00</b> — Cornelius Meister conducts Strauss <i>Don Juan</i>, Dvořák <i>The Noon Witch</i> &amp; Brahms <i>Symphony No. 2</i>. Platea A, Fila N, Posti 1 &amp; 2. ~20 min on foot, or vaporetto line 1, from the Arsenale. Dress smart-casual; arrive ~30 min before.</div></div>
+        <div><div class="st-name">Teatro La Fenice <span class="st-area">· San Marco</span></div><div class="st-note"><b>20:00</b> — Cornelius Meister conducts Strauss <i>Don Juan</i>, Dvořák <i>The Noon Witch</i> &amp; Brahms <i>Symphony No. 2</i>. Platea A, Fila N, Posti 1 &amp; 2. ~20 min on foot, or vaporetto line 1, from the Arsenale. Dress smart-casual; arrive ~30 min before. <a class="qr-link" href="fenice.pdf">Tickets (PDF)</a></div></div>
       </div>
       <div class="note">The day is a wide “V” — P 1779 (Cannaregio) sits north of both the Arsenale (east) and La Fenice (central). Doubling back to refresh at the B&amp;B costs ~35 min each way, so it's smoother to head straight from the Arsenale toward San Marco and freshen up over an early aperitivo near the theatre.</div>
     </div>
@@ -574,21 +585,21 @@
       <span class="sec-rule"></span>
     </div>
     <div class="card">
-      <div class="rows">
-        <div class="row"><span class="k">8 Jul · Bolt to HEL</span><span class="v">05:30–05:35 · Ioniq GNV-974</span></div>
-        <div class="row"><span class="k">8 Jul · Flight AY1781</span><span class="v">07:05 · ref 7I2R5D</span></div>
-        <div class="row"><span class="k">8–11 Jul · P 1779</span><span class="v">res 5301336778</span></div>
-        <div class="row"><span class="k">8 Jul · Anice Stellato</span><span class="v">19:15 · dinner, 2 guests</span></div>
-        <div class="row"><span class="k">9 Jul · Palazzo Ducale</span><span class="v">10:00 · 96PWIDWO35 · X8HZD6UUMY</span></div>
-        <div class="row"><span class="k">9 Jul · Museo Correr</span><span class="v">11:30 · 1K3X3WUHMW · 9N3OCUWEHT</span></div>
-        <div class="row"><span class="k">10 Jul · Corte Sconta</span><span class="v">13:00 · E637T3DTWPW</span></div>
-        <div class="row"><span class="k">10 Jul · Biennale Arte</span><span class="v">L3TT8OWXFK · WGGG9BWEEE</span></div>
-        <div class="row"><span class="k">10 Jul · Teatro La Fenice</span><span class="v">20:00 · Platea A, Fila N, 1–2</span></div>
-        <div class="row"><span class="k">11–14 Jul · Avis car</span><span class="v">ref 1705-6842-FI-5</span></div>
-        <div class="row"><span class="k">11–14 Jul · Le Volpi</span><span class="v">res 100709</span></div>
-        <div class="row"><span class="k">12 Jul · Monte Fasolo</span><span class="v">16:30 · pending confirmation</span></div>
-        <div class="row"><span class="k">13 Jul · Vignalta</span><span class="v">14:30 · b54ed233…</span></div>
-        <div class="row"><span class="k">14 Jul · Flight AY1784</span><span class="v">19:15 · Business · ref 7I2R5D</span></div>
+      <div class="rows checkrows">
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">8 Jul · Bolt to HEL</span><span class="v">05:30–05:35 · Ioniq GNV-974</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">8 Jul · Flight AY1781</span><span class="v">07:05 · ref 7I2R5D</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">8–11 Jul · P 1779</span><span class="v">res 5301336778</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">8 Jul · Anice Stellato</span><span class="v">19:15 · dinner, 2 guests</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">9 Jul · Palazzo Ducale</span><span class="v">10:00 · 96PWIDWO35 · X8HZD6UUMY</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">9 Jul · Museo Correr</span><span class="v">11:30 · 1K3X3WUHMW · 9N3OCUWEHT</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">10 Jul · Corte Sconta</span><span class="v">13:00 · E637T3DTWPW</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">10 Jul · Biennale Arte</span><span class="v">L3TT8OWXFK · WGGG9BWEEE</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">10 Jul · Teatro La Fenice</span><span class="v">20:00 · Platea A, Fila N, 1–2</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">11–14 Jul · Avis car</span><span class="v">ref 1705-6842-FI-5</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">11–14 Jul · Le Volpi</span><span class="v">res 100709</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">12 Jul · Monte Fasolo</span><span class="v">16:30 · pending confirmation</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">13 Jul · Vignalta</span><span class="v">14:30 · b54ed233…</span></span></div>
+        <div class="row check"><span class="box"></span><span class="rowmain"><span class="k">14 Jul · Flight AY1784</span><span class="v">19:15 · Business · ref 7I2R5D</span></span></div>
       </div>
       <div class="note">All the same codes appear alongside their day above. The only one still <b>pending</b> is Monte Fasolo — awaiting its second confirmation email.</div>
     </div>
@@ -625,6 +636,22 @@
   }
   window.addEventListener('hashchange', render);
   render();
+})();
+</script>
+<script>
+(function(){
+  function keyFor(el){var t=(el.textContent||'').replace(/\s+/g,' ').trim();var h=5381;for(var i=0;i<t.length;i++){h=((h<<5)+h+t.charCodeAt(i))|0;}return 'vck'+h;}
+  function get(k){try{return localStorage.getItem(k)==='1';}catch(e){return false;}}
+  function set(k,v){try{localStorage.setItem(k,v?'1':'0');}catch(e){}}
+  var items=[].slice.call(document.querySelectorAll('.todo li, .row.check'));
+  items.forEach(function(el){
+    var k=keyFor(el);
+    if(get(k)) el.classList.add('done');
+    el.addEventListener('click',function(e){
+      if(e.target.closest && e.target.closest('a')) return;
+      set(k, el.classList.toggle('done'));
+    });
+  });
 })();
 </script>
 
