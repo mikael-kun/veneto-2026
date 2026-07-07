@@ -293,6 +293,32 @@
   .arrow{align-self:center;flex:none;min-width:40px;}
   .ap{min-width:0;}
   @media (max-width:360px){ .ap .code{font-size:23px;} .ap .t{font-size:17px;} .ap .city{font-size:11px;} }
+  /* ===== mobile-first refinements ===== */
+  html,body{overflow-x:hidden;}
+  img,svg{max-width:100%;}
+  .card,.note,.dtxt,.st-note,.rc-sub,.thennow .now,.plate figcaption,.row .v,.mini-note{overflow-wrap:break-word;word-break:break-word;}
+  .code-chip{overflow-wrap:anywhere;}
+  .tb-brand{flex:none;}
+  .tb-page{min-width:0;flex:0 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+  @media (max-width:480px){
+    section{margin-top:32px;}
+    .sec-title{font-size:23px;}
+    .day{grid-template-columns:54px 1fr;}
+    .day .body{padding-left:15px;}
+    .stop{grid-template-columns:52px 1fr;}
+    .thennow .tn{grid-template-columns:84px 1fr;gap:10px;}
+    .pair .card{min-width:140px;}
+    .row.check .rowmain{row-gap:2px;}
+    .callbtn{font-size:15px;}
+  }
+  @media (max-width:380px){
+    .thennow .tn{grid-template-columns:1fr;gap:2px;}
+    .thennow .then{padding-top:0;}
+    .day{grid-template-columns:48px 1fr;}
+    .day .body{padding-left:13px;}
+    .stop{grid-template-columns:46px 1fr;}
+  }
 </style>
 </head>
 <body>
@@ -671,7 +697,7 @@
 
 <script>
 (function(){
-  var pages={days:'Day by Day',travel:'Flights & Car',stays:"Where You're Staying",hills:'Hills & Wine Atlas',info:'Bookings'};
+  var pages={days:'Day by Day',travel:'Flights & Car',stays:'Your Stays',hills:'Hills & Wine',info:'Essentials'};
   var els=document.querySelectorAll('[data-page]');
   var tabs=document.querySelectorAll('.tab');
   var label=document.querySelector('.tb-page');
