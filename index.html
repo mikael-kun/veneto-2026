@@ -319,6 +319,14 @@
     .day .body{padding-left:13px;}
     .stop{grid-template-columns:46px 1fr;}
   }
+  /* soundtrack */
+  .track{display:block;text-decoration:none;padding:11px 2px;border-bottom:1px solid var(--line-soft);color:var(--ink);-webkit-tap-highlight-color:transparent;}
+  .track:last-of-type{border-bottom:none;}
+  .track .t-artist{font-family:"Fraunces",serif;font-weight:500;font-size:16.5px;}
+  .track .t-album{font-style:italic;color:var(--wine);}
+  .track:active{background:rgba(116,47,47,.05);}
+  .tab span{white-space:nowrap;}
+  @media (max-width:400px){ .tabbar{padding-left:2px;padding-right:2px;} }
 </style>
 </head>
 <body>
@@ -594,6 +602,40 @@
     </div>
   </section>
 
+  <!-- MUSIC -->
+  <section data-page="music">
+    <div class="sec-head">
+      <span class="sec-num"></span>
+      <span class="sec-title">Soundtrack</span>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="card">
+      <div class="rc-head">I · Venice — grandeur &amp; water</div>
+      <div class="rc-sub">St Mark's at dusk, palaces mirrored on the Grand Canal.</div>
+        <a class="track" href="https://music.apple.com/search?term=Max%20Richter%20Recomposed%3A%20Vivaldi%20%E2%80%94%20The%20Four%20Seasons"><span class="t-artist">Max Richter</span> — <span class="t-album">Recomposed: Vivaldi — The Four Seasons</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Rond%C3%B2%20Veneziano%20La%20Serenissima"><span class="t-artist">Rondò Veneziano</span> — <span class="t-album">La Serenissima</span></a>
+    </div>
+
+    <div class="card">
+      <div class="rc-head">II · The Euganean Hills — sun, vines &amp; walled towns</div>
+      <div class="rc-sub">Driving south past Padua, up into the volcanic Colli Euganei.</div>
+        <a class="track" href="https://music.apple.com/search?term=Ludovico%20Einaudi%20In%20a%20Time%20Lapse"><span class="t-artist">Ludovico Einaudi</span> — <span class="t-album">In a Time Lapse · I Giorni</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Fabrizio%20De%20Andr%C3%A9%20Creuza%20de%20M%C3%A4"><span class="t-artist">Fabrizio De André</span> — <span class="t-album">Creuza de Mä</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Paolo%20Conte%20Aguaplano"><span class="t-artist">Paolo Conte</span> — <span class="t-album">Aguaplano · Un Gelato al Limone</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Gianmaria%20Testa%20Da%20Questa%20Parte%20del%20Mare"><span class="t-artist">Gianmaria Testa</span> — <span class="t-album">Da Questa Parte del Mare</span></a>
+    </div>
+
+    <div class="card">
+      <div class="rc-head">III · Aperitivo hour — 6 to 8 pm</div>
+      <div class="rc-sub">That golden window for a Select or Campari spritz.</div>
+        <a class="track" href="https://music.apple.com/search?term=Fred%20Buscaglione%20Che%20Notte"><span class="t-artist">Fred Buscaglione</span> — <span class="t-album">Che Notte</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Ornella%20Vanoni%20Senza%20Fine"><span class="t-artist">Ornella Vanoni</span> — <span class="t-album">Senza Fine</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Pink%20Martini%20Splendor%20in%20the%20Grass"><span class="t-artist">Pink Martini</span> — <span class="t-album">Splendor in the Grass</span></a>
+        <a class="track" href="https://music.apple.com/search?term=Calibro%2035%20Traditori%20di%20Tutti"><span class="t-artist">Calibro 35</span> — <span class="t-album">Traditori di Tutti</span></a>
+    </div>
+    <div class="note">A week that drifts from misty Gothic canals to sun-warmed volcanic vines — the music shifts with it. Tap any track to open it in Apple Music.</div>
+  </section>
+
   <!-- INSURANCE -->
   <section data-page="info">
     <div class="sec-head">
@@ -692,12 +734,13 @@
   <a class="tab" href="#travel" data-tab="travel"><svg viewBox="0 0 24 24"><path d="M21.5 2.5 2 11l7 2.6L11.6 21 21.5 2.5z"/><path d="M9 13.6 21.5 2.5"/></svg><span>Travel</span></a>
   <a class="tab" href="#stays" data-tab="stays"><svg viewBox="0 0 24 24"><path d="M2 19v-6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"/><path d="M2 15.5h20"/><path d="M6 11V8a1.5 1.5 0 0 1 1.5-1.5H11V11"/><path d="M2.5 19v1.5M21.5 19v1.5"/></svg><span>Stays</span></a>
   <a class="tab" href="#hills" data-tab="hills"><svg viewBox="0 0 24 24"><path d="M2.5 20 9 8.5l4 6.5 2.2-3.4L21.5 20z"/></svg><span>Hills</span></a>
+  <a class="tab" href="#music" data-tab="music"><svg viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg><span>Music</span></a>
   <a class="tab" href="#info" data-tab="info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5M12 7.6h.01"/></svg><span>Info</span></a>
 </nav>
 
 <script>
 (function(){
-  var pages={days:'Day by Day',travel:'Flights & Car',stays:'Your Stays',hills:'Hills & Wine',info:'Essentials'};
+  var pages={days:'Day by Day',travel:'Flights & Car',stays:'Your Stays',hills:'Hills & Wine',music:'Soundtrack',info:'Essentials'};
   var els=document.querySelectorAll('[data-page]');
   var tabs=document.querySelectorAll('.tab');
   var label=document.querySelector('.tb-page');
