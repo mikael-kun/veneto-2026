@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal · Veneto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe1; --paper-2:#efe4d1; --card:#fbf6ec;
+    --ink:#2c241d; --ink-soft:#5e5142;
+    --wine:#742f2f; --wine-deep:#56211f;
+    --terra:#bd6b35; --ochre:#c4983f; --sage:#6c7152;
+    --line:rgba(44,36,29,.16); --line-soft:rgba(44,36,29,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden;}
+  body{
+    font-family:"Newsreader",Georgia,serif; color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 80% -10%, rgba(196,152,63,.18), transparent 55%),
+      radial-gradient(120% 90% at -10% 5%, rgba(116,47,47,.10), transparent 50%),
+      var(--paper);
+    background-attachment:fixed; line-height:1.5; font-size:17px; letter-spacing:.1px;
+    padding:0 0 60px; overflow-x:hidden;
+  }
+  img{max-width:100%;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px;}
+
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin:0 -20px;padding:13px 20px 11px;
+    background:rgba(246,239,225,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .tb-back{
+    font-family:"Newsreader",serif;font-style:italic;font-size:14.5px;color:var(--wine);
+    text-decoration:none;display:flex;align-items:center;gap:5px;
+  }
+  .tb-brand{font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase;}
+
+  header.hero{padding:34px 0 22px;text-align:center;}
+  .overline{
+    font-family:"Newsreader",serif;font-style:italic;font-size:15px;color:var(--wine);
+    letter-spacing:.18em;text-transform:uppercase;display:inline-block;
+  }
+  .overline::before,.overline::after{content:"·";margin:0 .6em;color:var(--terra);}
+  h1.title{
+    font-family:"Fraunces",serif;font-weight:500;font-size:clamp(42px,14vw,68px);
+    line-height:.95;letter-spacing:-.02em;color:var(--ink);margin:.12em 0 .1em;
+  }
+  h1.title em{font-style:italic;color:var(--wine);}
+  .sub{font-style:italic;color:var(--ink-soft);font-size:15.5px;}
+
+  /* day pills */
+  .daynav{
+    display:flex;gap:8px;overflow-x:auto;padding:4px 2px 22px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .daynav::-webkit-scrollbar{display:none;}
+  .daynav a{
+    flex:none;font-family:"Fraunces",serif;font-size:14px;color:var(--ink-soft);
+    text-decoration:none;padding:7px 14px;border:1px solid var(--line);border-radius:20px;
+    background:var(--card);white-space:nowrap;transition:all .15s ease;
+  }
+  .daynav a.on{background:var(--wine);border-color:var(--wine);color:#fbf6ec;}
+
+  /* day entry */
+  .day-entry{margin-top:8px;padding-top:38px;border-top:1px solid var(--line);}
+  .day-entry:first-of-type{border-top:none;padding-top:0;}
+  .day-date{
+    font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--terra);
+    letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;
+  }
+  .day-title{
+    font-family:"Fraunces",serif;font-weight:500;font-size:29px;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:16px;
+  }
+  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .day-entry p b{color:var(--ink);font-weight:500;}
+  .day-entry p:last-of-type{margin-bottom:0;}
+
+  /* gallery */
+  .gallery{
+    margin-top:24px; column-count:2; column-gap:10px;
+  }
+  .gallery figure{
+    break-inside:avoid; margin:0 0 10px; background:var(--card);
+    border:1px solid var(--line-soft); border-radius:3px; overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 8px 20px -16px rgba(44,36,29,.5);
+  }
+  .gallery img{display:block;width:100%;height:auto;}
+  .gallery figcaption{
+    font-size:12.5px;font-style:italic;color:var(--ink-soft);padding:8px 10px 10px;line-height:1.35;
+  }
+  @media (max-width:420px){ .gallery{column-count:2;column-gap:8px;} .gallery figure{margin-bottom:8px;} }
+
+  footer{margin-top:50px;text-align:center;color:var(--ink-soft);font-style:italic;font-size:14px;}
+  footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="tb-back" href="index.html">&larr;&nbsp;Guide</a>
+    <span class="tb-brand">Journal</span>
+  </div>
+
+  <header class="hero">
+    <span class="overline">Kept as we go</span>
+    <h1 class="title">The Journ<em>a</em>l</h1>
+    <div class="sub">Venice &amp; the Euganean Hills · 8–14 July 2026</div>
+  </header>
+
+  <nav class="daynav">
+    <a href="#d1" class="on">8 Jul · Venice</a>
+    <a href="#d2">9 Jul</a>
+    <a href="#d3">10 Jul</a>
+    <a href="#d4">11 Jul</a>
+    <a href="#d5">12 Jul</a>
+    <a href="#d6">13 Jul</a>
+    <a href="#d7">14 Jul</a>
+  </nav>
+
+  <!-- ===== DAY 1 ===== -->
+  <section class="day-entry" id="d1">
+    <div class="day-date">Wednesday · 8 July</div>
+    <h2 class="day-title">Arrival, and the first spritz</h2>
+
+    <p>Up at 5am with the kind of groggy dread only a 05:35 Bolt pickup can produce. By the time we were blinking in the queue at HEL, half the terminal seemed to be Japanese tour groups also transferring through — a very on-brand start to a trip about wandering with the crowds instead of against them.</p>
+
+    <p><b>AY1781</b> left on time. Marco Polo greeted us with the usual arrivals-hall theatre: hunting down the ATVO counter for return bus tickets while trying hard not to be mistaken for the Delta charter's worth of Americans fanning out around us. Lane D2, tickets in hand, off to Piazzale Roma.</p>
+
+    <p>First stop in the city proper: bruschette and cappuccini at <b>La Lista</b> near Campo San Geremia — the correct way to arrive in Venice, sitting still with coffee before the legs take over. Then <b>P 1779</b>, where Max's local tips turned out to be the real welcome packet: where to eat, where to drink, where to shoot the good photos, where to actually shop instead of just window-gawking.</p>
+
+    <p>From there we did what Venice demands on a first afternoon — wandered without much of a plan, landed at <b>San Sofia</b> for the obligatory spritz, watched the light do its thing over the canal. Back to P 1779 to change, then out again through the <b>Ghetto Nuovo</b>, that quieter corner of Cannaregio with its tall houses and its own particular hush.</p>
+
+    <p>Dinner was <b>Osteria Anice Stellato</b>, and the wine list did more work than the plates — which is a real compliment given how good the antipasti was. Lambrusco to open alongside smoked tomato and anchovy; green snail gnocchi with a Sassi di Matera red; mussel spaghettone with a crisp Verdicchio mescita. Antipasti-forward, wine-led, exactly right for night one.</p>
+
+    <div class="gallery">
+      <figure><img src="img/day1/day1-01.jpg" loading="lazy" alt="Plane wing on the tarmac at HEL"><figcaption>05:35am energy, HEL apron.</figcaption></figure>
+      <figure><img src="img/day1/day1-02.jpg" loading="lazy" alt="Boarding selfie at the gate"><figcaption>Gate selfie — AY1781 to Venice, 07:05.</figcaption></figure>
+      <figure><img src="img/day1/day1-04.jpg" loading="lazy" alt="Breakfast bruschetta with burrata"><figcaption>Bruschetta at La Lista, Campo San Geremia.</figcaption></figure>
+      <figure><img src="img/day1/day1-03.jpg" loading="lazy" alt="Aerial view over the lagoon"><figcaption>First glimpse of the lagoon on descent.</figcaption></figure>
+      <figure><img src="img/day1/day1-05.jpg" loading="lazy" alt="Mira on a Venice street"><figcaption>Settling in, first hour in Cannaregio.</figcaption></figure>
+      <figure><img src="img/day1/day1-06.jpg" loading="lazy" alt="Paper map of Venice, annotated"><figcaption>Max's tips, plotted on paper.</figcaption></figure>
+      <figure><img src="img/day1/day1-07.jpg" loading="lazy" alt="Ivy-covered building along a shopfront"><figcaption>Wandering toward the Ghetto Nuovo.</figcaption></figure>
+      <figure><img src="img/day1/day1-08.jpg" loading="lazy" alt="Narrow Venice canal"><figcaption>No real plan, and no need for one.</figcaption></figure>
+      <figure><img src="img/day1/day1-09.jpg" loading="lazy" alt="Canal-side table under an umbrella"><figcaption>San Sofia, spritz o'clock.</figcaption></figure>
+      <figure><img src="img/day1/day1-10.jpg" loading="lazy" alt="Bruschette and drinks on a wooden board"><figcaption>The spritz stop's supporting cast.</figcaption></figure>
+      <figure><img src="img/day1/day1-11.jpg" loading="lazy" alt="Mira on a wooden bridge"><figcaption>Changed and back out, golden hour approaching.</figcaption></figure>
+      <figure><img src="img/day1/day1-12.jpg" loading="lazy" alt="Mikael and Mira selfie on a canal at sunset"><figcaption>On the way to dinner.</figcaption></figure>
+      <figure><img src="img/day1/day1-13.jpg" loading="lazy" alt="Mira at the table at Anice Stellato"><figcaption>Anice Stellato — lambrusco, smoked tomato, anchovy.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- Future days get appended here, each as its own <section class="day-entry" id="dN"> -->
+
+  <footer>
+    <div class="fl"></div>
+    Buon viaggio — Venice to the vineyards.
+  </footer>
+
+</div>
+</body>
+</html>
