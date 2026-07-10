@@ -98,6 +98,14 @@
   }
   @media (max-width:420px){ .gallery{column-count:2;column-gap:8px;} .gallery figure{margin-bottom:8px;} }
 
+  /* inline figures within prose */
+  .inline-figure{
+    margin:18px 0; background:var(--card); border:1px solid var(--line-soft); border-radius:3px;
+    overflow:hidden; box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 8px 20px -16px rgba(44,36,29,.5);
+  }
+  .inline-figure img{display:block;width:100%;height:auto;}
+  .inline-figure figcaption{font-size:13px;font-style:italic;color:var(--ink-soft);padding:9px 12px 11px;line-height:1.4;}
+
   footer{margin-top:50px;text-align:center;color:var(--ink-soft);font-style:italic;font-size:14px;}
   footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 </style>
@@ -168,6 +176,30 @@
     <p>Then a quick march through Cannaregio into San Marco, racing the clock. We'd budgeted the <b>Doge's Palace</b> first — facade glowing white-and-pink in the sun, the Bridge of Sighs and prison wing squeezed in at the end so we wouldn't miss our <b>11:30 slot at Museo Correr</b>. Mikael took an unreasonable number of ceiling photos inside; no regrets.</p>
 
     <p>Correr turned out to be the real surprise of the day — an exhibition arcing from the <b>Etruscans clear through to Napoleon</b>, by way of antique atlases, a Fra Mauro-style world map under glass, a wall-sized 16th-century view of the Basilica on fire, and — improbably — a cabinet of ammonites. The kind of eclectic civic museum that rewards wandering more than checklist-ticking.</p>
+
+    <p>Correr's numismatic cabinets turned into their own small game — using ChatGPT as an ad-hoc tour guide to work out what each case of coins would actually have bought.</p>
+
+    <p><b>Case one, c. 1700–1750:</b> a quarter-scudo and a quarter-ducat under Doge Alvise II Mocenigo and Doge Silvestro Valier — ordinary spending money, good for a meal at a modest inn, wine, bread, fish, candles, a gondola ride across town. Sitting between them, the real star: a 10-zecchini gold piece. A single zecchino was already one of the most trusted gold coins in Europe; ten of them together was the equivalent of carrying a very large banknote. Most ordinary Venetians would rarely, if ever, have handled one. That one coin alone could plausibly have covered several months of comfortable living, a fine tailored outfit or an excellent sword, a respectable horse, a good piece of jewelry — or about a twelfth of what Canaletto was charging for a painting in the 1730s. Try to pay for lunch at a tavern with it and the innkeeper would have looked at you the way a barista today might if you handed over a €5,000 note.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-01.jpg" loading="lazy" alt="18th-century Venetian gold and silver coins under Doge Alvise II Mocenigo"><figcaption>Quarter-scudo, quarter-ducat, and the 10-zecchini gold piece in the middle — c. 1700s.</figcaption></figure>
+
+    <p><b>Case two, c. 1550–1600:</b> the small change of Renaissance Venice — tornesello, bezzo, sesino, soldino, on up through 2, 4, 6 and 20 soldi, quattrino, marcello — next to the serious money: a Ducato d'Argento, a quarter zecchino, a full gold zecchino. The tornesello was coffee-and-chestnuts money, a coin to pay a child for running an errand. A few soldi covered a tavern lunch, wine, cheese, candles, a ferry ride, or an hour or two of an artisan's labor. Twenty soldi bought good leather shoes, several nights' lodging, a week's food for a family, or a decent wool cloak. The silver ducato was merchant money — a month's rent, a mule, a bolt of quality imported cloth. And the full zecchino, the coin merchants from London to Constantinople accepted without a second glance, could buy an excellent tailored doublet, months of a laborer's wages, a fine sword, a modest horse, even a small boat. Carry one of every coin in that case and you'd walk through Venice looking like a merchant freshly back from Alexandria — not palace money, but certainly banking-and-long-distance-trade money.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-02.jpg" loading="lazy" alt="16th-century Venetian coins under Doge Francesco Donà"><figcaption>Torneselli up through soldi, ducati d'argento, and zecchini — Renaissance Venice, 1500s.</figcaption></figure>
+
+    <p><b>Case three, c. 1720–1789:</b> gold zecchini and large silver coins under the later doges — Alvise III Mocenigo, Carlo Ruzzini, Pietro Grimani, Francesco Loredan, Paolo Renier, Ludovico Manin — Venice in its Carnival-and-Casanova era, no longer the naval power it once was but still extravagantly rich. A single zecchino here bought a fashionable gentleman's entire outfit: velvet coat, embroidered waistcoat, silk stockings, leather shoes. It hired a gondola privately for the day without a second thought. A handful of them financed a dinner for six merchants — oysters, Adriatic fish, game birds, imported wine, pastries, coffee after — with money left to spare, or covered evenings at the opera, a masked ball, the Ridotto casino. Empty the whole case into your pockets in 1775 and, by rough modern feel, you'd be carrying something like €5,000–15,000 in lifestyle terms: not palazzo money, but more than enough to mark you out as merchant class among the gondoliers, masked nobles, Ottoman traders, English Grand Tourists, and — still very much alive at the time — Giacomo Casanova.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-03.jpg" loading="lazy" alt="18th-century Venetian gold zecchini under later doges"><figcaption>Gold zecchini under Doges Ruzzini, Grimani, Loredan, and Renier — Carnival-era Venice.</figcaption></figure>
+
+    <p><b>Case four, buried c. AD 840:</b> the Hoard of San Tomà, found in Venice in 1934 — seven Byzantine gold solidi struck under Emperors Theophilus, Michael II, and Constantine, alongside a single Abbasid gold dinar minted in Merv, in modern Turkmenistan, under Caliph al-Mu'tasim. The solidus was the closest thing the early medieval world had to a global reserve currency — stable at about 4.5 grams and 95–98% pure gold for over 700 years, trusted almost anywhere. One of them could buy a donkey, several sheep, months of grain for a family, a fine sword, weeks or months of skilled labor. The dinar is the real showstopper, though: a coin that likely traveled Merv → Persia → Baghdad → Syria → Alexandria → Constantinople → Venice, crossing the length of the known world centuries before Marco Polo. Someone buried all eight coins — a serious fortune, worth a comfortable house or a share in a merchant ship — during a period of Adriatic piracy and Byzantine–Frankish tension, and never came back for them.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-04.jpg" loading="lazy" alt="Byzantine solidi and an Abbasid dinar, the Hoard of San Tomà"><figcaption>The Hoard of San Tomà — seven Byzantine solidi and a dinar minted in Merv, buried c. AD 840.</figcaption></figure>
+
+    <p><b>Case five, oldest of all:</b> a heap of nearly 500 Roman bronze sestertii from a hoard found at Martellago, just inland from Venice, spanning Emperor Vespasian (AD 69–79) — who built the Colosseum — through to Trebonianus Gallus (AD 251–253), nearly 180 years of coins all saved together. The sestertius was the everyday workhorse of Roman commerce: bread, wine, wages, tolls, tools, a night at an inn. What's striking is that they're bronze, not silver or gold — by the mid-3rd century, Rome's Crisis of the Third Century had brought constant civil war, barbarian incursions, plague, and heavy debasement of silver coinage, and even small change had become worth saving and hiding. Roughly 500 sestertii was over half a year's pay for a legionary under earlier pay scales — not a senator's fortune, but enough that losing it would ruin someone. Buried, by the look of it, in a moment of real fear, and never reclaimed.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-05.jpg" loading="lazy" alt="Hoard of Roman bronze sestertii from Martellago"><figcaption>Nearly 500 Roman sestertii from Martellago, Vespasian to Trebonianus Gallus — someone's buried savings.</figcaption></figure>
+
+    <p>A nice reminder that under the palazzi, Venice's whole reason for being was always money moving through it.</p>
 
     <p>Late lunch at <b>Ombra del Leone</b>, with the Punta della Dogana and the white flank of the Salute basilica sitting across the water like part of the menu. The afternoon dissolved into shopping through San Marco and San Polo — hats for both of us, and a piece of locally made jewelry for Mira to wear to La Fenice on Friday.</p>
 
