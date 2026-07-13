@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes · Veneto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe1; --paper-2:#efe4d1; --card:#fbf6ec;
+    --ink:#2c241d; --ink-soft:#5e5142;
+    --wine:#742f2f; --wine-deep:#56211f;
+    --terra:#bd6b35; --ochre:#c4983f; --sage:#6c7152;
+    --line:rgba(44,36,29,.16); --line-soft:rgba(44,36,29,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden;}
+  body{
+    font-family:"Newsreader",Georgia,serif; color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 80% -10%, rgba(196,152,63,.18), transparent 55%),
+      radial-gradient(120% 90% at -10% 5%, rgba(116,47,47,.10), transparent 50%),
+      var(--paper);
+    background-attachment:fixed; line-height:1.5; font-size:17px; letter-spacing:.1px;
+    padding:0 0 60px; overflow-x:hidden;
+  }
+  img{max-width:100%;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px;}
+
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin:0 -20px;padding:13px 20px 11px;
+    background:rgba(246,239,225,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .tb-back{
+    font-family:"Newsreader",serif;font-style:italic;font-size:14.5px;color:var(--wine);
+    text-decoration:none;display:flex;align-items:center;gap:5px;
+  }
+  .tb-brand{font-family:"Fraunces",serif;font-weight:600;font-size:15px;letter-spacing:.06em;color:var(--ink-soft);text-transform:uppercase;}
+
+  header.hero{padding:34px 0 22px;text-align:center;}
+  .overline{
+    font-family:"Newsreader",serif;font-style:italic;font-size:15px;color:var(--wine);
+    letter-spacing:.18em;text-transform:uppercase;display:inline-block;
+  }
+  .overline::before,.overline::after{content:"·";margin:0 .6em;color:var(--terra);}
+  h1.title{
+    font-family:"Fraunces",serif;font-weight:500;font-size:clamp(42px,14vw,68px);
+    line-height:.95;letter-spacing:-.02em;color:var(--ink);margin:.12em 0 .1em;
+  }
+  h1.title em{font-style:italic;color:var(--wine);}
+  .sub{font-style:italic;color:var(--ink-soft);font-size:15.5px;}
+
+  /* day pills */
+  .daynav{
+    display:flex;gap:8px;overflow-x:auto;padding:4px 2px 22px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .daynav::-webkit-scrollbar{display:none;}
+  .daynav a{
+    flex:none;font-family:"Fraunces",serif;font-size:14px;color:var(--ink-soft);
+    text-decoration:none;padding:7px 14px;border:1px solid var(--line);border-radius:20px;
+    background:var(--card);white-space:nowrap;transition:all .15s ease;
+  }
+  .daynav a.on{background:var(--wine);border-color:var(--wine);color:#fbf6ec;}
+  .daynav a.museum-pill{margin-left:6px;border-color:var(--terra);color:var(--terra);}
+  .daynav a.museum-pill.on{background:var(--terra);border-color:var(--terra);color:#fbf6ec;}
+  .daynav a.concert-pill{border-color:var(--sage);color:var(--sage);}
+  .daynav a.concert-pill.on{background:var(--sage);border-color:var(--sage);color:#fbf6ec;}
+
+  /* day entry */
+  .day-entry{margin-top:8px;padding-top:38px;border-top:1px solid var(--line);}
+  .day-entry:first-of-type{border-top:none;padding-top:0;}
+  .day-date{
+    font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--terra);
+    letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;
+  }
+  .day-title{
+    font-family:"Fraunces",serif;font-weight:500;font-size:29px;letter-spacing:-.01em;
+    color:var(--ink);margin-bottom:16px;
+  }
+  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .day-entry p b{color:var(--ink);font-weight:500;}
+  .day-entry p:last-of-type{margin-bottom:0;}
+
+  /* gallery */
+  .gallery{
+    margin-top:24px; column-count:2; column-gap:10px;
+  }
+  .gallery figure{
+    break-inside:avoid; margin:0 0 10px; background:var(--card);
+    border:1px solid var(--line-soft); border-radius:3px; overflow:hidden;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 8px 20px -16px rgba(44,36,29,.5);
+  }
+  .gallery img{display:block;width:100%;height:auto;}
+  .gallery figcaption{
+    font-size:12.5px;font-style:italic;color:var(--ink-soft);padding:8px 10px 10px;line-height:1.35;
+  }
+  @media (max-width:420px){ .gallery{column-count:2;column-gap:8px;} .gallery figure{margin-bottom:8px;} }
+
+  /* inline figures within prose */
+  .inline-figure{
+    margin:18px 0; background:var(--card); border:1px solid var(--line-soft); border-radius:3px;
+    overflow:hidden; box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 8px 20px -16px rgba(44,36,29,.5);
+  }
+  .inline-figure img{display:block;width:100%;height:auto;}
+  .inline-figure figcaption{font-size:13px;font-style:italic;color:var(--ink-soft);padding:9px 12px 11px;line-height:1.4;}
+
+  footer{margin-top:50px;text-align:center;color:var(--ink-soft);font-style:italic;font-size:14px;}
+  footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="tb-back" href="journal.html">&larr;&nbsp;Journal</a>
+    <span class="tb-brand">Notes</span>
+  </div>
+
+  <header class="hero">
+    <span class="overline">Off to the side</span>
+    <h1 class="title">Side N<em>o</em>tes</h1>
+    <div class="sub">Museum &amp; concert notes, split off from the daily journal</div>
+  </header>
+
+  <nav class="daynav">
+    <a href="#museum" class="on museum-pill">Museum Notes</a>
+    <a href="#concert" class="on concert-pill">Concert Notes</a>
+  </nav>
+
+  <!-- ===== MUSEUM NOTES ===== -->
+  <section class="day-entry" id="museum">
+    <div class="day-date">Off to the side</div>
+    <h2 class="day-title">Museum Notes: Museo Correr</h2>
+
+    <p>Not tied to any one hour of the day — this is everything that came out of pointing a phone camera at display cases in Museo Correr and using ChatGPT as an ad-hoc tour guide. Coins first, then a painted ceiling, then a run of mythological dinner plates.</p>
+
+    <p><b>The coin cabinets.</b> Working out what each case of coins would actually have bought, case by case.</p>
+
+    <p><b>Case one, c. 1700–1750:</b> a quarter-scudo and a quarter-ducat under Doge Alvise II Mocenigo and Doge Silvestro Valier — ordinary spending money, good for a meal at a modest inn, wine, bread, fish, candles, a gondola ride across town. Sitting between them, the real star: a 10-zecchini gold piece. A single zecchino was already one of the most trusted gold coins in Europe; ten of them together was the equivalent of carrying a very large banknote. Most ordinary Venetians would rarely, if ever, have handled one. That one coin alone could plausibly have covered several months of comfortable living, a fine tailored outfit or an excellent sword, a respectable horse, a good piece of jewelry — or about a twelfth of what Canaletto was charging for a painting in the 1730s. Try to pay for lunch at a tavern with it and the innkeeper would have looked at you the way a barista today might if you handed over a €5,000 note.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-01.jpg" loading="lazy" alt="18th-century Venetian gold and silver coins under Doge Alvise II Mocenigo"><figcaption>Quarter-scudo, quarter-ducat, and the 10-zecchini gold piece in the middle — c. 1700s.</figcaption></figure>
+
+    <p><b>Case two, c. 1550–1600:</b> the small change of Renaissance Venice — tornesello, bezzo, sesino, soldino, on up through 2, 4, 6 and 20 soldi, quattrino, marcello — next to the serious money: a Ducato d'Argento, a quarter zecchino, a full gold zecchino. The tornesello was coffee-and-chestnuts money, a coin to pay a child for running an errand. A few soldi covered a tavern lunch, wine, cheese, candles, a ferry ride, or an hour or two of an artisan's labor. Twenty soldi bought good leather shoes, several nights' lodging, a week's food for a family, or a decent wool cloak. The silver ducato was merchant money — a month's rent, a mule, a bolt of quality imported cloth. And the full zecchino, the coin merchants from London to Constantinople accepted without a second glance, could buy an excellent tailored doublet, months of a laborer's wages, a fine sword, a modest horse, even a small boat. Carry one of every coin in that case and you'd walk through Venice looking like a merchant freshly back from Alexandria — not palace money, but certainly banking-and-long-distance-trade money.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-02.jpg" loading="lazy" alt="16th-century Venetian coins under Doge Francesco Donà"><figcaption>Torneselli up through soldi, ducati d'argento, and zecchini — Renaissance Venice, 1500s.</figcaption></figure>
+
+    <p><b>Case three, c. 1720–1789:</b> gold zecchini and large silver coins under the later doges — Alvise III Mocenigo, Carlo Ruzzini, Pietro Grimani, Francesco Loredan, Paolo Renier, Ludovico Manin — Venice in its Carnival-and-Casanova era, no longer the naval power it once was but still extravagantly rich. A single zecchino here bought a fashionable gentleman's entire outfit: velvet coat, embroidered waistcoat, silk stockings, leather shoes. It hired a gondola privately for the day without a second thought. A handful of them financed a dinner for six merchants — oysters, Adriatic fish, game birds, imported wine, pastries, coffee after — with money left to spare, or covered evenings at the opera, a masked ball, the Ridotto casino. Empty the whole case into your pockets in 1775 and, by rough modern feel, you'd be carrying something like €5,000–15,000 in lifestyle terms: not palazzo money, but more than enough to mark you out as merchant class among the gondoliers, masked nobles, Ottoman traders, English Grand Tourists, and — still very much alive at the time — Giacomo Casanova.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-03.jpg" loading="lazy" alt="18th-century Venetian gold zecchini under later doges"><figcaption>Gold zecchini under Doges Ruzzini, Grimani, Loredan, and Renier — Carnival-era Venice.</figcaption></figure>
+
+    <p><b>Case four, buried c. AD 840:</b> the Hoard of San Tomà, found in Venice in 1934 — seven Byzantine gold solidi struck under Emperors Theophilus, Michael II, and Constantine, alongside a single Abbasid gold dinar minted in Merv, in modern Turkmenistan, under Caliph al-Mu'tasim. The solidus was the closest thing the early medieval world had to a global reserve currency — stable at about 4.5 grams and 95–98% pure gold for over 700 years, trusted almost anywhere. One of them could buy a donkey, several sheep, months of grain for a family, a fine sword, weeks or months of skilled labor. The dinar is the real showstopper, though: a coin that likely traveled Merv → Persia → Baghdad → Syria → Alexandria → Constantinople → Venice, crossing the length of the known world centuries before Marco Polo. Someone buried all eight coins — a serious fortune, worth a comfortable house or a share in a merchant ship — during a period of Adriatic piracy and Byzantine–Frankish tension, and never came back for them.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-04.jpg" loading="lazy" alt="Byzantine solidi and an Abbasid dinar, the Hoard of San Tomà"><figcaption>The Hoard of San Tomà — seven Byzantine solidi and a dinar minted in Merv, buried c. AD 840.</figcaption></figure>
+
+    <p><b>Case five, oldest of all:</b> a heap of nearly 500 Roman bronze sestertii from a hoard found at Martellago, just inland from Venice, spanning Emperor Vespasian (AD 69–79) — who built the Colosseum — through to Trebonianus Gallus (AD 251–253), nearly 180 years of coins all saved together. The sestertius was the everyday workhorse of Roman commerce: bread, wine, wages, tolls, tools, a night at an inn. What's striking is that they're bronze, not silver or gold — by the mid-3rd century, Rome's Crisis of the Third Century had brought constant civil war, barbarian incursions, plague, and heavy debasement of silver coinage, and even small change had become worth saving and hiding. Roughly 500 sestertii was over half a year's pay for a legionary under earlier pay scales — not a senator's fortune, but enough that losing it would ruin someone. Buried, by the look of it, in a moment of real fear, and never reclaimed.</p>
+
+    <figure class="inline-figure"><img src="img/day2coins/day2-coins-05.jpg" loading="lazy" alt="Hoard of Roman bronze sestertii from Martellago"><figcaption>Nearly 500 Roman sestertii from Martellago, Vespasian to Trebonianus Gallus — someone's buried savings.</figcaption></figure>
+
+    <p>A nice reminder that under the palazzi, Venice's whole reason for being was always money moving through it.</p>
+
+    <p><b>The Sansovino Library ceiling.</b> The same game continued one room over, in the gilded ceiling of the Biblioteca Marciana — working out who was who in three of its round paintings (tondi).</p>
+
+    <p>The first shows a woman with a crescent moon in her hair, a hunting spear in hand, facing down a man with antlers growing from his head while others recoil around him. The crescent moon marks her as Diana, goddess of the hunt; the antlers give the man away as Actaeon, the hunter who stumbled on her bathing and paid for it — transformed into a stag and, in the fuller version of the myth, torn apart by his own hounds, who no longer recognized him. This panel catches the moment just before that: the punishment landing, the transformation still underway, no dogs yet in frame.</p>
+
+    <figure class="inline-figure"><img src="img/day2ceiling/day2-ceiling-01.jpg" loading="lazy" alt="Ceiling painting of Diana and Actaeon, Biblioteca Marciana"><figcaption>Diana, crescent moon and spear, confronting the half-transformed Actaeon.</figcaption></figure>
+
+    <p>The second is a winged woman crowned with stars, reaching up toward a radiant mother and child descending through the clouds, a trumpet in one hand and what looks like a laurel branch in the other, discarded armor lying below her. The star crown and trumpet point to Fame — Fama — the personification of glory that spreads swiftly and lasts. Read together, the panel is less a specific myth than an allegory: earthly achievement (the armor) set aside in favor of a higher, heavenly reward, with Fame on hand to proclaim and crown the virtuous. Very Renaissance Venice, splicing classical allegory straight into Christian imagery without missing a beat.</p>
+
+    <figure class="inline-figure"><img src="img/day2ceiling/day2-ceiling-02.jpg" loading="lazy" alt="Ceiling painting of a winged, star-crowned figure, Biblioteca Marciana"><figcaption>Fame, star-crowned and winged, reaching toward a radiant mother and child.</figcaption></figure>
+
+    <p>The third is the most crowded: a straining, muscular figure hoists a great sphere overhead — Atlas, though contrary to the popular shorthand he's carrying the heavens, not the Earth, his punishment after the war with the Titans. Around him, a woman holds up an armillary sphere, the standard Renaissance emblem for the study of astronomy; an old bearded man reclines by an overflowing urn with a crocodile at his feet, most likely a river god standing in for the Nile; putti clamber underfoot; a geometer's compass and a hint of pyramids sit off to one side. Stacked together, it reads as a single idea rather than four separate ones: the heavens (Atlas), the science of reading them (astronomy), the ancient wisdom of Egypt (the Nile), and the mathematics underneath it all (geometry) — the whole apparatus of Renaissance knowledge in one tondo.</p>
+
+    <figure class="inline-figure"><img src="img/day2ceiling/day2-ceiling-03.jpg" loading="lazy" alt="Ceiling painting of Atlas with the celestial sphere, Biblioteca Marciana"><figcaption>Atlas and the celestial sphere, with Astronomy, the Nile, and geometry gathered around him.</figcaption></figure>
+
+    <p>The ceiling was designed by Jacopo Sansovino, its tondi painted by a roster that includes Veronese, Tintoretto, Battista Franco, and Giuseppe Salviati — a who's-who of Venetian Renaissance painting assembled for a library that once held Cardinal Bessarion's donated collection of Greek manuscripts. The whole program amounts to a painted argument: wisdom, virtue, and the study of the cosmos are what qualify a person to govern Venice — a republic that liked to present itself as ruled by learning rather than force. A 16th-century scholar, about to open a copy of Homer or Euclid, would have looked up first and been told, in paint, exactly what kind of person they were meant to become.</p>
+
+    <p><b>The Fra Mauro map.</b> The other thing under glass at Correr — and easy to mistake for a good replica rather than the genuine article — is the actual <b>Fra Mauro Mappamondo</b>, drawn in Venice around 1450–60 by the Camaldolese monk Fra Mauro at the monastery of San Michele in Isola. It's one of the great monuments of late-medieval cartography: the known world before the discovery of the Americas, ringed entirely by sea, drawn south-up rather than north-up, with eight wind-roses spaced around the circumference. The whole thing is parchment on wood, the planisphere itself just under two meters across, set into a frame closer to two and a quarter.</p>
+
+    <figure class="inline-figure"><img src="img/day2map/day2-map-01.jpg" loading="lazy" alt="The Fra Mauro world map, full view in its gold frame"><figcaption>The Fra Mauro Mappamondo, Venice, c. 1450–1460 — south at the top.</figcaption></figure>
+
+    <p>What sets it apart from earlier medieval maps is the sourcing: Fra Mauro pulled from classical, late-Latin, and medieval written sources alongside sailors' and travelers' oral accounts, and covered the surface with hundreds of small illustrated buildings and landscapes plus roughly three thousand inscriptions, all in Venetian vernacular rather than Latin. The four corners carry cosmological diagrams and notes, including a depiction of the Earthly Paradise illuminated by Leonardo Bellini.</p>
+
+    <figure class="inline-figure"><img src="img/day2map/day2-map-02.jpg" loading="lazy" alt="Museum label for the Fra Mauro world map"><figcaption>The museum's own label, in Italian and English.</figcaption></figure>
+
+    <p>Close up, it rewards the kind of squinting a phone camera makes possible. One detail shows the Java/China coast, dense with tiny walled cities and a marginal note in Venetian script — the sort of place-by-place annotation that made this map so unusually well-informed for its time. Another shows northern Europe — Prussia, the Baltic (Sinus Germanicus), Gothia, Norvegia, Svetia, Islant — with two little cog-ships riding the waves and a note warning that this particular sea isn't one you'd navigate by chart or compass. A third shows the Mediterranean and North Africa — Cirenaica, Libia, Getulia, Numidia — with Anglia and Scotia just visible in the corner, and ships dotted across a sea that, on this map, is still very much the center of the known world.</p>
+
+    <figure class="inline-figure"><img src="img/day2map/day2-map-03.jpg" loading="lazy" alt="Detail of the Fra Mauro map showing Java and the China coast"><figcaption>Detail: Giava and the China coast, dense with named cities.</figcaption></figure>
+
+    <figure class="inline-figure"><img src="img/day2map/day2-map-04.jpg" loading="lazy" alt="Detail of the Fra Mauro map showing Scandinavia and the Baltic"><figcaption>Detail: Prussia, Norvegia, Svetia, Islant — the North.</figcaption></figure>
+
+    <figure class="inline-figure"><img src="img/day2map/day2-map-05.jpg" loading="lazy" alt="Detail of the Fra Mauro map showing the Mediterranean and North Africa"><figcaption>Detail: the Mediterranean, Cirenaica and Numidia, ships under sail.</figcaption></figure>
+
+    <p><b>The maiolica plates.</b> A whole case of Renaissance dinnerware painted with scenes from Ovid's <i>Metamorphoses</i> — mythological comic-book panels, meant to give Renaissance dinner guests something to discuss between courses. Mikael's running commentary, read cold, undersold the myths in the funniest possible way; decoded, they're a proper mythological storyboard.</p>
+
+    <p>First up: <b>"There's these treeguys on these pastaplates."</b> Two plates side by side. On the left, Echo and Narcissus — the labels spell it out: ECHO, the nymph who could only repeat other people's words, wasting away with heartbreak while NARCISO gazes at his own reflection in the water. On the right, a couple merging into two intertwined trees, with a dragon coiled at their feet and the names PELIO and TETIS inscribed below — Peleus and Thetis, the mortal and the shape-shifting sea nymph whose forced courtship (Peleus had to hold on through her transformations, dragon included, to win her) produced Achilles. The tree imagery reads more like an echo of Philemon and Baucis, but the plate's own inscription points to Peleus and Thetis, dragon and all.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-01.jpg" loading="lazy" alt="Maiolica plates depicting Echo and Narcissus, and Peleus and Thetis"><figcaption>Left: Echo and Narciso. Right: Pelio and Tetis, dragon included.</figcaption></figure>
+
+    <p>Next: <b>"This guy's being harassed by a swan!"</b> Correctly clocked as Leda and the Swan — Zeus in disguise, approaching Leda, queen of Sparta. Ancient sources disagree on how willing an encounter it was, and plenty of retellings are frank that it wasn't. The pair of eggs that followed hatched Helen of Troy, Clytemnestra, and the twins Castor and Pollux. The wide border scene — a lute player, Cupid handing something to a fashionable gentleman — has nothing to do with the myth in the center; Renaissance maiolica routinely paired a classical medallion with an unrelated contemporary street scene, mixing myth and dinner-table Venice on the same plate.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-02.jpg" loading="lazy" alt="Maiolica plate depicting Leda and the Swan, with a Renaissance street scene border"><figcaption>Leda and the Swan, ringed by a lute player and a gentleman with Cupid at his elbow.</figcaption></figure>
+
+    <p>Then: <b>"He started a fire, she's giving him a soundtrack?"</b> Best read as Orpheus, on his way into the Underworld — the bowed instrument standing in for his lyre (Renaissance painters routinely modernized it), the bearded ferryman in the boat almost certainly Charon, the burning city behind him standing for death and the world being left behind rather than any specific blaze. The next plate confirms it.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-03.jpg" loading="lazy" alt="Maiolica plate depicting Orpheus crossing toward the Underworld, with Charon and a burning city"><figcaption>Orpheus, Charon's boat, and a burning city — the journey down.</figcaption></figure>
+
+    <p><b>"What?"</b> — the plate that makes the previous one click. Orpheus leading Eurydice, in white, out of the Underworld, a horned guardian watching from a doorway and Charon's boat still visible on the water behind them. This is the moment just before the myth turns tragic: Hades had agreed to release Eurydice on the condition that Orpheus not look back until they'd both left the Underworld. He does, moments later, and loses her again — permanently, this time.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-04.jpg" loading="lazy" alt="Maiolica plate depicting Orpheus leading Eurydice out of the Underworld"><figcaption>Orpheus leading Eurydice out — Charon's boat still visible behind them.</figcaption></figure>
+
+    <p>Last of the Orpheus run: <b>"Looks like she's really bad player."</b> Two plates, and the joke undersells both. On the left, Orpheus playing in the wilderness after losing Eurydice for good — his music so beautiful that deer, a lion, even rabbits gather to listen, the natural world charmed into stillness. On the right, the actual "one-star review": the Maenads, ecstatic followers of Dionysus, turning on him — enraged, in various tellings, either by his rejection of other women after Eurydice or his neglect of Dionysus's worship — clubs raised, his instrument already lying broken on the ground. They kill him and tear him apart; his severed head is said to have kept singing as it floated down the river to Lesbos. Renaissance artists returned to Orpheus again and again because his story cuts both ways: music that can tame wild animals, but not human violence.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-05.jpg" loading="lazy" alt="Maiolica plates depicting Orpheus charming animals, and the Maenads attacking Orpheus"><figcaption>Left: Orpheus charms the forest. Right: the Maenads' verdict.</figcaption></figure>
+
+    <p><b>"They got caught 😏"</b> — reasonable guess, wrong scene. The inscription reads SALOMONI: King Solomon, carrying a book as a symbol of wisdom, arriving at a canopied bed where a young couple stand close together, the woman apparently pregnant. Without the museum's own label it's hard to pin down which biblical episode this illustrates — Solomon turns up in several involving judgment, marriage, or wisdom — but it's a visit or a judgment being rendered, not an accidental catch. Maiolica of this kind mixed biblical scenes in with the classical ones without much ceremony.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-06.jpg" loading="lazy" alt="Maiolica plate depicting King Solomon, inscribed SALOMONI"><figcaption>King Solomon, book in hand, arriving at a canopied bed.</figcaption></figure>
+
+    <p>And last: <b>"Huge man-baby."</b> Not a myth at all — an allegory of the Four Seasons, the inscription spelling it out along the bottom edge: PRIMAVERA, STATE, VTTVNO, INVIERNO. A youthful woman with Cupid and a bow for Spring; a wheat-crowned figure with a sickle for Summer; a plump, grape-wreathed figure — the man-baby in question — for Autumn, deliberately rounded to signal abundance and the wine harvest; and a bundled, shivering old woman for Winter. Read left to right, it's a small, complete cycle of the year, slim to round to cold, and a fittingly indulgent note to end the case on.</p>
+
+    <figure class="inline-figure"><img src="img/day2plates/day2-plates-07.jpg" loading="lazy" alt="Maiolica plate depicting an allegory of the Four Seasons"><figcaption>Primavera, State, Vttvno, Invierno — Spring through Winter, left to right.</figcaption></figure>
+
+    <p><b>A cheerful little medal.</b> A bronze roundel, easy to misread: <b>"IO SON FINE"</b> looked, for a hopeful second, like Italian for "I'm fine, son." It isn't. It's Renaissance Italian for "I am the end" — Death, speaking in the first person. A skull sits at the center; an old, emaciated man covers his face beside it; Cupid slouches on the other side with his torch, love running out of fuel along with everything else. An inscribed date along the bottom edge reads something like M·CCCC·LXVI — 1466, give or take a numeral worn smooth by five centuries of thumbs. Textbook memento mori: wealth fades, beauty fades, love fades, and this is the one certainty underneath all of it — delivered, appropriately, with a skull for a footstool.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-01.jpg" loading="lazy" alt="Bronze memento mori medal inscribed IO SON FINE"><figcaption>"Io son fine" — not "I'm fine, son." Death, an old man, and a tired Cupid.</figcaption></figure>
+
+    <p><b>Bronze strongmen.</b> A pair of small gilt bronze statuettes, each holding a club carved with a spiral, stepped pattern — a Renaissance take on Hercules's weapon of choice, confirmed by the second figure mid-swing over his shoulder. Neither one has the six-pack-and-cape physique that modern Hercules illustrations default to; both are built more like Olympic strongmen than superheroes — thick through the chest and waist, all raw power over visible definition, closer to how antiquity actually imagined a man capable of the Twelve Labors: strong enough to move mountains, not particularly worried about how he looked doing it.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-02.jpg" loading="lazy" alt="Two gilt bronze statuettes of Hercules with his club"><figcaption>Hercules, twice over — built for labors, not for a photo shoot.</figcaption></figure>
+
+    <p>Standing nearby, a second bronze pair reads less like myth and more like a moment caught mid-conversation: a woman in the classic Venus Pudica pose — one hand at her breast, the other gathering drapery at her hip, modesty as performance rather than actual concealment — half-turned away from a bearded man leaning in toward her, holding some kind of staff or branch, cropped out of frame. Five hundred years on, the body language still reads perfectly: him leaning in, her not quite having it. Whatever mythological pairing the sculptor intended — Venus and Mars, Venus and a satyr, something else — the small human moment survived the centuries better than the iconography did.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-03.jpg" loading="lazy" alt="Bronze statuettes of a bearded man and a woman in the Venus Pudica pose"><figcaption>A very readable "no" — five centuries old.</figcaption></figure>
+
+    <p><b>The bull hunt at Campo San Polo.</b> A large painting, dense enough to reward ten minutes of close-up photography, showing the <i>Caccia dei Tori</i> — the "Hunt of the Bulls," one of the biggest public spectacles of Renaissance and Baroque Venice. Less a hunt than bull-baiting crossed with Carnival: bulls tied by the horns and worked by rope-handlers called <i>tiratori</i>, mastiffs set loose to harass them, masked clowns weaving through the chaos, and every balcony and temporary grandstand around the campo packed with spectators, the good seats reserved for whoever could pay for them.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-04.jpg" loading="lazy" alt="Detail of the Caccia dei Tori painting showing packed balconies and a bull in the square"><figcaption>Every balcony rented out, a bull standing almost calmly in the middle of it all.</figcaption></figure>
+
+    <p>Other corners of the canvas catch the wider scene and the danger both: a milling crowd of performers, animals, and onlookers stretching back across the square; ropes pulled taut from both sides as dogs dart in and a bull fights the handlers; and, in the worst moment on the canvas, outright panic — people diving clear, a fallen figure's jewelry spilled across the ground, a bull barreling straight through the crowd with no one quite in control of it.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-05.jpg" loading="lazy" alt="Detail of the Caccia dei Tori painting showing the crowd and performers"><figcaption>The wider square — animals, performers, and a crowd that never stops moving.</figcaption></figure>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-06.jpg" loading="lazy" alt="Detail of the Caccia dei Tori painting showing a bull being worked by rope-handlers and dogs"><figcaption>Ropes taut on both sides, dogs already in — the dangerous part.</figcaption></figure>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-07.jpg" loading="lazy" alt="Detail of the Caccia dei Tori painting showing a crowd panicking as a bull charges"><figcaption>The moment it goes wrong — spilled jewelry, people diving clear.</figcaption></figure>
+
+    <p>The bull hunts were banned in Campo San Polo in 1611, though they carried on elsewhere in the city for a long while after; a fatal crowd accident in 1802 finally put an end to the tradition altogether. Whatever else it was, this particular painting is basically a 17th-century "spot the detail" puzzle — gamblers, noblewomen on balconies, children pushing too close, someone's dog stealing the show in a corner nobody's looking at.</p>
+
+    <p><b>The lion's mouth.</b> A carved stone relief of a snarling face, mouth cut through as a slot, mounted above an inscribed panel: a <i>Bocca di Leone</i>, one of the Venetian Republic's semi-famous instruments of state — a physical letterbox for anonymous written accusations against corrupt officials. The inscription (in period Venetian) reads roughly: secret denunciations against ministers and others who commit fraud against the public, or who maintain private and secret dealings, correspondence, or bribes. Not a suggestion box for bad soup — a formal channel for reporting embezzlement, smuggling, or backroom dealing with foreign powers, complaint slipped through a stone mouth into the machinery of the Republic. Venice took the risk of frivolous or malicious accusations seriously enough to build in some scrutiny before acting on them, which makes this less a secret-police prop than an early, oddly literal anti-corruption hotline.</p>
+
+    <figure class="inline-figure"><img src="img/day2extra/day2-extra-08.jpg" loading="lazy" alt="Stone Bocca di Leone complaint box with inscription"><figcaption>Bocca di Leone — an anonymous-tip line carved in stone, mouth as mail slot.</figcaption></figure>
+  </section>
+
+  <!-- ===== CONCERT NOTES ===== -->
+  <section class="day-entry" id="concert">
+    <div class="day-date">Off to the side</div>
+    <h2 class="day-title">Concert Notes: Cornelius Meister at La Fenice</h2>
+
+    <p>The three pieces on Meister's debut program each turned out to have a real story behind them — worth pulling out on their own rather than squeezed into the day's account.</p>
+
+    <p><b>Don Juan, Op. 20 — Richard Strauss.</b> Written in 1888, when Strauss was all of 24, and an instant sensation — the piece that put him on the map as the most audacious young composer in Europe. It's built on Nikolaus Lenau's telling of the Don Juan legend, which reworks the old cruel-seducer myth into something closer to tragedy: this Don Juan is an idealist, chasing an impossible standard of "perfect womanhood," discarding every woman the moment she turns out to be merely human rather than the ideal he's after. By the end he's exhausted by the futility of the search, and when a duel finally comes for him, he doesn't fight to survive — he lets himself be killed, death arriving almost as relief.</p>
+
+    <p><b>The Midday Witch (Polednice), Op. 108 — Antonín Dvořák.</b> A late piece, from 1896, written after Dvořák came home to Bohemia from his years in America and turned back toward Czech folklore for material. The source is a genuinely unsettling poem by Karel Jaromír Erben: a mother, worn down and trying to get lunch on the table, snaps at her misbehaving toddler that the Midday Witch will come take him away if he doesn't stop. Noon strikes. The witch actually appears. The mother, panicking, grabs her child and clutches him to her chest to shield him from it — and when the father comes home, he finds her collapsed on the floor, having smothered their child to death in her own terror. Not a folk tale with a moral so much as a horror story with a body count, scored for full orchestra.</p>
+
+    <p><b>Symphony No. 2 in D major, Op. 73 — Johannes Brahms.</b> The contrast with the piece it's usually paired against in program notes is the whole point: Brahms spent a tortured 21 years finishing his First Symphony, terrified of inviting comparison to Beethoven. The Second arrived almost the opposite way — a relaxed summer holiday on the shores of the Wörthersee in Austria in 1877, and the symphony came together in a matter of months. It's "absolute music" in the strict sense: no plot, no characters, nothing for the program notes to summarize — the closest thing it has to a story is the lake, the mountain air, and the mood of that particular summer. Brahms joked to his publisher that the melodies were so sunny he worried the notes might float right off the page, though there are quieter, shadowed passages folded in underneath — nature's unpredictability, smuggled into an otherwise cheerful piece.</p>
+
+    <p>Strauss and Dvořák both belonged to the so-called "New German" school, which held that music should tell a literal story; Brahms stood for the opposing "absolute music" camp, insisting a symphony could and should stand on pure form with no narrative attached. Putting all three back to back on one program plays that old rivalry out in real time, while making the case that both sides were chasing the same thing — big, unguarded orchestral feeling — by different routes.</p>
+
+    <p>The personal dynamics underneath that split are its own story. Brahms and Dvořák were the warm relationship: Brahms sat on the jury that awarded Dvořák the Austrian State Stipendium in the 1870s, was startled by how good the unknown Bohemian's submissions were, and used his own standing to push his publisher, Simrock, to take Dvořák on — the deal that produced the <i>Slavonic Dances</i> and effectively launched Dvořák internationally. It wasn't just a professional favor either; Brahms proofread Dvořák's scores, lent him money at points, and by most accounts the friendship stayed genuinely affectionate for the rest of Brahms's life, despite Brahms being a lifelong bachelor with little patience for religion and Dvořák a devoutly Catholic family man — an odd-couple friendship that worked anyway. Strauss's relationship with Brahms ran colder. As a teenager Strauss was steeped in Brahms's style by his father, a conservative horn player who idolized Brahms and distrusted the Wagner camp on principle; the young Strauss dutifully wrote in a Brahmsian idiom for years, and even showed Brahms an early symphony in person, only to reportedly get fairly blunt, unimpressed feedback back. Not long after, under the influence of the conductor and composer Alexander Ritter, Strauss defected wholesale to the Liszt–Wagner "New German" camp Brahms had spent his career defining himself against — which makes <i>Don Juan</i>, the piece on this very program, basically Strauss's declaration of independence from the style his father raised him on. Dvořák and Strauss, by contrast, barely factor into each other's story directly — mutual respect from a distance, two composers on the same side of the programmatic-music divide without much personal history to speak of. So the program isn't just a philosophical rivalry laid out side by side; it's also, quietly, a mentor who got it right (Brahms and Dvořák) sitting next to a mentorship that didn't take (Brahms and Strauss).</p>
+
+    <p>And as a debut program specifically, it's a shrewd piece of self-scouting — <i>Don Juan</i> tests the orchestra's raw speed and the horn section, <i>Polednice</i> asks the woodwinds to act like a theater troupe conjuring dread out of nothing, and the Brahms demands the kind of warm, unified string tone that can't be faked. Three pieces, three different muscles, all flexed in front of a new audience — about as close as classical music gets to a job interview.</p>
+  </section>
+
+  <footer>
+    <div class="fl"></div>
+    Buon viaggio — Venice to the vineyards.
+  </footer>
+
+</div>
+</body>
+</html>
