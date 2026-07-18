@@ -16,14 +16,14 @@
     --line:rgba(44,36,29,.16); --line-soft:rgba(44,36,29,.09);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-text-size-adjust:100%;overflow-x:hidden;}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-behavior:smooth;}
   body{
     font-family:"Newsreader",Georgia,serif; color:var(--ink);
     background:
       radial-gradient(120% 80% at 80% -10%, rgba(196,152,63,.18), transparent 55%),
       radial-gradient(120% 90% at -10% 5%, rgba(116,47,47,.10), transparent 50%),
       var(--paper);
-    background-attachment:fixed; line-height:1.5; font-size:17px; letter-spacing:.1px;
+    background-attachment:fixed; line-height:1.62; font-size:17px; letter-spacing:.1px;
     padding:0 0 60px; overflow-x:hidden;
   }
   img{max-width:100%;}
@@ -73,7 +73,7 @@
   .daynav a.concert-pill.on{background:var(--sage);border-color:var(--sage);color:#fbf6ec;}
 
   /* day entry */
-  .day-entry{margin-top:8px;padding-top:38px;border-top:1px solid var(--line);}
+  .day-entry{margin-top:8px;padding-top:46px;border-top:1px solid var(--line);}
   .day-entry:first-of-type{border-top:none;padding-top:0;}
   .day-date{
     font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--terra);
@@ -81,9 +81,9 @@
   }
   .day-title{
     font-family:"Fraunces",serif;font-weight:500;font-size:29px;letter-spacing:-.01em;
-    color:var(--ink);margin-bottom:16px;
+    color:var(--ink);margin-bottom:20px;
   }
-  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:20px;line-height:1.72;}
   .day-entry p b{color:var(--ink);font-weight:500;}
   .day-entry p:last-of-type{margin-bottom:0;}
 
@@ -114,12 +114,74 @@
   footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   .daynav a.wine-pill{border-color:var(--ochre);color:var(--ochre);}
   .daynav a.wine-pill.on{background:var(--ochre);border-color:var(--ochre);color:#fbf6ec;}
+  /* anchor offset under sticky bar */
+  .day-entry{scroll-margin-top:64px;}
+
+  /* per-day footer nav: prev / top / next */
+  .day-foot{
+    display:flex;align-items:center;margin-top:34px;
+    border-top:1px solid var(--line-soft);padding-top:16px;
+    font-family:"Newsreader",serif;font-style:italic;font-size:14px;
+  }
+  .day-foot a{color:var(--wine);text-decoration:none;transition:color .15s ease;}
+  .day-foot a:hover{color:var(--wine-deep);}
+  .day-foot .df-prev{flex:1;text-align:left;}
+  .day-foot .df-next{flex:1;text-align:right;}
+  .day-foot .df-mid{flex:0 0 auto;text-align:center;padding:0 14px;white-space:nowrap;}
+  .day-foot .df-mid::before{content:"\2191";font-style:normal;margin-right:5px;font-size:13px;}
+
+  /* image placeholder + fade-in */
+  .gallery figure,.inline-figure{background:var(--paper-2);}
+  .gallery img.ph,.inline-figure img.ph{opacity:0;transition:opacity .55s ease;}
+  .gallery img.ph.loaded,.inline-figure img.ph.loaded{opacity:1;}
+  .gallery img,.inline-figure img{cursor:zoom-in;}
+
+  /* lightbox */
+  .lightbox{
+    position:fixed;inset:0;z-index:100;display:none;
+    align-items:center;justify-content:center;padding:24px;cursor:zoom-out;
+    background:rgba(28,22,17,.92);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  }
+  .lightbox.open{display:flex;}
+  .lightbox figure{
+    background:transparent;border:none;box-shadow:none;border-radius:0;
+    max-width:min(1100px,100%);max-height:100%;
+    display:flex;flex-direction:column;align-items:center;margin:0;overflow:visible;
+  }
+  .lightbox img{
+    max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;
+    border-radius:3px;box-shadow:0 20px 60px -20px rgba(0,0,0,.7);cursor:default;
+  }
+  .lightbox figcaption{
+    color:#e9ddc9;font-style:italic;font-size:14px;text-align:center;
+    padding:14px 8px 0;line-height:1.4;max-width:760px;
+  }
+  .lightbox figcaption a{color:#e9ddc9;}
+  .lb-close{
+    position:absolute;top:14px;right:20px;background:none;border:none;
+    color:#f6efe1;font-size:34px;line-height:1;cursor:pointer;font-family:"Newsreader",serif;
+  }
+
+  /* print / PDF */
+  @media print{
+    html{scroll-behavior:auto;}
+    body{background:#fff !important;color:#000;}
+    .topbar,.daynav,.day-foot,.lightbox{display:none !important;}
+    .wrap{max-width:100%;padding:0;}
+    .day-entry{page-break-before:always;border-top:none;padding-top:0;margin-top:0;}
+    .day-entry:first-of-type{page-break-before:avoid;}
+    .gallery{column-count:1;}
+    .gallery figure,.inline-figure{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
+    .gallery img.ph,.inline-figure img.ph{opacity:1 !important;}
+    a{color:inherit;text-decoration:none;}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="topbar">
+  <div class="topbar" id="top">
     <a class="tb-back" href="index.html">&larr;&nbsp;Guide</a>
     <span class="tb-brand">Journal</span>
   </div>
@@ -132,15 +194,15 @@
 
   <nav class="daynav">
     <a href="#d1" class="on">8 Jul · Venice</a>
-    <a href="#d2" class="on">9 Jul</a>
-    <a href="#d3" class="on">10 Jul</a>
-    <a href="#d4" class="on">11 Jul</a>
-    <a href="#d5" class="on">12 Jul</a>
-    <a href="#d6" class="on">13 Jul</a>
-    <a href="#d7" class="on">14 Jul</a>
-    <a href="notes.html#museum" class="on museum-pill">Museum Notes</a>
-    <a href="notes.html#concert" class="on concert-pill">Concert Notes</a>
-    <a href="notes.html#wine" class="on wine-pill">Wine Notes</a>
+    <a href="#d2">9 Jul</a>
+    <a href="#d3">10 Jul</a>
+    <a href="#d4">11 Jul</a>
+    <a href="#d5">12 Jul</a>
+    <a href="#d6">13 Jul</a>
+    <a href="#d7">14 Jul</a>
+    <a href="notes.html#museum" class="museum-pill">Museum Notes</a>
+    <a href="notes.html#concert" class="concert-pill">Concert Notes</a>
+    <a href="notes.html#wine" class="wine-pill">Wine Notes</a>
   </nav>
 
   <!-- ===== DAY 1 ===== -->
@@ -177,6 +239,11 @@
 
     <figure class="inline-figure"><img src="img/day1/day1-13.jpg" loading="lazy" alt="Mira at the table at Anice Stellato"><figcaption>Anice Stellato — lambrusco, smoked tomato, anchovy.</figcaption></figure>
     <figure class="inline-figure"><img src="img/day1/day1-12.jpg" loading="lazy" alt="Mikael and Mira selfie on a canal at sunset"><figcaption>First day wrapped.</figcaption></figure>
+    <nav class="day-foot">
+      <span class="df-prev"></span>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d2">9 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 2 ===== -->
@@ -233,6 +300,11 @@
       <figure class="inline-figure"><img src="img/day2/day2-22.jpg" loading="lazy" alt="Dinner at Al Bagolo"><figcaption>Walked in to a restaurant Al Bagolo.</figcaption></figure>
       <figure class="inline-figure"><img src="img/day2/day2-23.jpg" loading="lazy" alt="Mira with Aperols"><figcaption>Last drinks of the day.</figcaption></figure>
       <figure class="inline-figure"><img src="img/day2/day2-24.jpg" loading="lazy" alt="Canal at Cannareggio night"><figcaption>Closing the day.</figcaption></figure>
+    <nav class="day-foot">
+      <a class="df-prev" href="#d1">← 8 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d3">10 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 3 ===== -->
@@ -242,7 +314,11 @@
 
     <p>A late start, and a fair one — the last two days' worth of late nights and uneven sleep finally sent the bill. The morning went to journaling and sorting through photos rather than sightseeing. The Doge's Palace and Correr had gone in deep — pierced straight through, honestly, in a way that's hard to imagine fully recovering from. There's an overwhelming amount of history, culture, and accumulated human wealth packed into this city built on water, more than feels reasonable for a place this size. It's clear now why she's called <i>La Serenissima</i> — she really is serene, in that particular way only a city this old and this sure of itself can be.</p>
 
-    <p>And it wasn't just accumulated wealth sitting still — Venice actively made the Renaissance happen, not merely hosted it. The Republic's trade fortune bankrolled artists and architects the way Florence's banking families did; its printing presses, Aldus Manutius's above all, put Greek and Latin classics into circulation faster and cheaper than anywhere else in Europe, inventing italic type and the modern pocket-sized book along the way. Cardinal Bessarion handed the city his library of Greek manuscripts, rescued out of a falling Byzantium, and that collection became the seed of the Biblioteca Marciana — the very room with the Sansovino ceiling from the day before. Venetian glassmakers on Murano and colorists in every workshop in the city gave Titian, Bellini, and Veronese pigments no one else had access to. And sitting where it does, at the hinge between Byzantium, the Islamic world, and Latin Europe, Venice was importing ideas along with silk and spice centuries before anyone used the word "Renaissance" for what was happening. Correr and the Marciana ceiling weren't just showing off what Venice bought — they were showing what Venice built.</p>
+    <p>And it wasn't just accumulated wealth sitting still — Venice actively made the Renaissance happen, not merely hosted it. The Republic's trade fortune bankrolled artists and architects the way Florence's banking families did; its printing presses, Aldus Manutius's above all, put Greek and Latin classics into circulation faster and cheaper than anywhere else in Europe, inventing italic type and the modern pocket-sized book along the way.</p>
+
+    <p>Cardinal Bessarion handed the city his library of Greek manuscripts, rescued out of a falling Byzantium, and that collection became the seed of the Biblioteca Marciana — the very room with the Sansovino ceiling from the day before. Venetian glassmakers on Murano and colorists in every workshop in the city gave Titian, Bellini, and Veronese pigments no one else had access to.</p>
+
+    <p>And sitting where it does, at the hinge between Byzantium, the Islamic world, and Latin Europe, Venice was importing ideas along with silk and spice centuries before anyone used the word "Renaissance" for what was happening. Correr and the Marciana ceiling weren't just showing off what Venice bought — they were showing what Venice built.</p>
 
     <p>The walk toward Castello was hot at midday, but for once mercifully uncrowded — campo after campo nearly empty, the canals and bridges doing that flickering-light thing Venice does when there's no one else in the frame.</p>
 
@@ -277,9 +353,15 @@
 
     <p>It turned out to be Meister's official debut with the La Fenice orchestra, which makes the pairing read less like a random program and more like a statement — one that got its own write-up rather than crowding the day's entry: <a class="qr-link" href="notes.html#concert">Concert Notes, on the Notes page</a>.</p>
 
-    <p>The name earns its keep. <i>La Fenice</i> means "the Phoenix," and the theater has lived up to it three separate times — burning down and rebuilding in 1774, 1836, and again in 1996, each time rising back into more or less the same late-Baroque splendor: red velvet, heavy gold leaf, the kind of ornate ceiling work that makes a room feel gilded rather than just decorated. It's acoustically one of the most highly regarded halls in Europe, which tracked with how the sound carried even from a cheap seat on the floor. And it earned its reputation the hard way, in the 19th century, as a genuine center of Italian opera — Verdi premiered both <i>Rigoletto</i> and <i>La Traviata</i> here, on this exact stage, long before it burned for the second and third time.</p>
+    <p>The name earns its keep. <i>La Fenice</i> means "the Phoenix," and the theater has lived up to it three separate times — burning down and rebuilding in 1774, 1836, and again in 1996, each time rising back into more or less the same late-Baroque splendor: red velvet, heavy gold leaf, the kind of ornate ceiling work that makes a room feel gilded rather than just decorated.</p>
 
-    <p>The program itself turned out to be a smart bit of curation, not just a nice-sounding trio of pieces. This was Cornelius Meister's official debut with the La Fenice orchestra, and Strauss, Dvořák, and Brahms sit on opposite sides of a real 19th-century fault line: Strauss and Dvořák belonged to the camp that believed music should tell a literal story — <i>Don Juan</i> is a specific lover's tale in sound, <i>The Midday Witch</i> tracks an actual folk-horror plot beat by beat — while Brahms represented the other school, the one that trusted pure musical form over any attached narrative. Placed on the same program, the split collapses a little: all three composers were reaching for the same scale of emotional weight, just arguing about how honest to be about the story behind it. There's a personal thread running underneath, too — Brahms was the one who championed Dvořák early and got him published internationally, and a young Strauss studied Brahms's orchestration closely before breaking off in his own more radical direction. And practically speaking, the three pieces cover the whole orchestra: <i>Don Juan</i> demands speed and precision, especially from the horns; the Dvořák leans on the woodwinds for its eerie theatrical effects; the Brahms needs nothing but pure, unified string tone and control. A genuinely well-chosen way for a new conductor to introduce himself to an orchestra — and to a hall that's heard a great many debuts before this one.</p>
+    <p>It's acoustically one of the most highly regarded halls in Europe, which tracked with how the sound carried even from a cheap seat on the floor. And it earned its reputation the hard way, in the 19th century, as a genuine center of Italian opera — Verdi premiered both <i>Rigoletto</i> and <i>La Traviata</i> here, on this exact stage, long before it burned for the second and third time.</p>
+
+    <p>The program itself turned out to be a smart bit of curation, not just a nice-sounding trio of pieces. This was Cornelius Meister's official debut with the La Fenice orchestra, and Strauss, Dvořák, and Brahms sit on opposite sides of a real 19th-century fault line: Strauss and Dvořák belonged to the camp that believed music should tell a literal story — <i>Don Juan</i> is a specific lover's tale in sound, <i>The Midday Witch</i> tracks an actual folk-horror plot beat by beat — while Brahms represented the other school, the one that trusted pure musical form over any attached narrative.</p>
+
+    <p>Placed on the same program, the split collapses a little: all three composers were reaching for the same scale of emotional weight, just arguing about how honest to be about the story behind it. There's a personal thread running underneath, too — Brahms was the one who championed Dvořák early and got him published internationally, and a young Strauss studied Brahms's orchestration closely before breaking off in his own more radical direction.</p>
+
+    <p>And practically speaking, the three pieces cover the whole orchestra: <i>Don Juan</i> demands speed and precision, especially from the horns; the Dvořák leans on the woodwinds for its eerie theatrical effects; the Brahms needs nothing but pure, unified string tone and control. A genuinely well-chosen way for a new conductor to introduce himself to an orchestra — and to a hall that's heard a great many debuts before this one.</p>
 
     <div class="gallery">
       <figure><img src="img/day3/day3-08.jpg" loading="lazy" alt="Crowd entering Gran Teatro La Fenice"><figcaption>Gran Teatro La Fenice, filing in.</figcaption></figure>
@@ -290,6 +372,11 @@
     <p>The vaporetto back from Rialto afterward came with the first real flicker of feeling like a local rather than a visitor — a nice note to end on, walking back past the winged lion at Campo Manin in the blue-hour dark. And, fittingly for a football-inflected trip, they made it back in time to catch Spain's second goal against Belgium in the World Cup quarter-final. A fine day around the islands, all told.</p>
 
     <figure class="inline-figure"><img src="img/day3/day3-11.jpg" loading="lazy" alt="The winged lion monument at Campo Manin at night"><figcaption>The winged lion at Campo Manin, walking home.</figcaption></figure>
+    <nav class="day-foot">
+      <a class="df-prev" href="#d2">← 9 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d4">11 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 4 ===== -->
@@ -331,6 +418,11 @@
     <p>Pizza itself delivered — two full-sized pies, no regrets about portion sizes. Then back to Le Volpi in time to catch Norway play England, closing out a day that started with a wrong-class rental car and ended with vineyards, foxes, and football.</p>
 
     <figure class="inline-figure"><img src="img/day4b/day4-11.jpg" loading="lazy" alt="Mira smiling at a table with two large pizzas in Padova"><figcaption>Pizza in Padova — appropriately oversized.</figcaption></figure>
+    <nav class="day-foot">
+      <a class="df-prev" href="#d3">← 10 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d5">12 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 5 ===== -->
@@ -401,6 +493,11 @@
     <figure class="inline-figure"><img src="img/day5/day5-15.jpg" loading="lazy" alt="Dinner on the patio: ribs with roast potatoes, pasta, and glasses of red wine"><figcaption>Dinner on the patio — costine di maiale with the Carmenère, bigoli al ragù with the 8 Mesi across the table.</figcaption></figure>
     <figure class="inline-figure"><img src="img/day5/day5-16.jpg" loading="lazy" alt="Mikael and Mira selfie at sunset over the Euganean Hills"><figcaption>Sunset over the hills before heading home.</figcaption></figure>
 
+    <nav class="day-foot">
+      <a class="df-prev" href="#d4">← 11 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d6">13 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 6 ===== -->
@@ -451,6 +548,11 @@
     <figure class="inline-figure"><img src="img/day6/day6-11.jpg" loading="lazy" alt="Bottle of Terregaie Alberto Metodo Classico Brut held by a waiter"><figcaption>The Alberto metodo classico, poured for the anchovy pasta.</figcaption></figure>
     <figure class="inline-figure"><img src="img/day6/day6-12.jpg" loading="lazy" alt="Bottle of Alla Costiera Biancone, Veneto Tai Bianco IGT"><figcaption>Alla Costiera Biancone — Veneto Tai Bianco IGT — alongside the lasagne.</figcaption></figure>
 
+    <nav class="day-foot">
+      <a class="df-prev" href="#d5">← 12 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#d7">14 Jul →</a>
+    </nav>
   </section>
 
   <!-- ===== DAY 7 ===== -->
@@ -491,6 +593,11 @@
     <figure class="inline-figure"><img src="img/day7/day7-09.jpg" loading="lazy" alt="Venice lagoon with its islands and channels seen from the departing plane"><figcaption>One last look down at the lagoon — the whole week laid out in miniature.</figcaption></figure>
     <figure class="inline-figure"><img src="img/day7/day7-10.jpg" loading="lazy" alt="Night aerial view of Helsinki suburbs with scattered lights"><figcaption>Home: Helsinki near midnight, midsummer dusk refusing to go fully dark.</figcaption></figure>
 
+    <nav class="day-foot">
+      <a class="df-prev" href="#d6">← 13 Jul</a>
+      <a class="df-mid" href="#top">Top</a>
+      <span class="df-next"></span>
+    </nav>
   </section>
 
   <!-- Future days get appended here, each as its own <section class="day-entry" id="dN"> -->
@@ -501,5 +608,56 @@
   </footer>
 
 </div>
+<script>
+(function(){
+  var days=[].slice.call(document.querySelectorAll('.day-entry'));
+  var pills={};
+  document.querySelectorAll('.daynav a[href^="#"]').forEach(function(a){
+    pills[a.getAttribute('href').slice(1)]=a;
+  });
+  function onScroll(){
+    var y=window.pageYOffset+140, cur=days.length?days[0].id:null;
+    days.forEach(function(d){ if(d.offsetTop<=y) cur=d.id; });
+    var nav=document.querySelector('.daynav');
+    for(var id in pills){
+      var on=id===cur; pills[id].classList.toggle('on', on);
+      if(on && nav){ var pp=pills[id]; nav.scrollLeft=pp.offsetLeft-nav.clientWidth/2+pp.clientWidth/2; }
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  document.addEventListener('DOMContentLoaded', onScroll);
+  onScroll();
+})();
+</script>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <figure><img id="lb-img" src="" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+<script>
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('.gallery img,.inline-figure img'));
+  imgs.forEach(function(im){
+    im.classList.add('ph');
+    if(im.complete && im.naturalWidth) im.classList.add('loaded');
+    else{ im.addEventListener('load',function(){im.classList.add('loaded');});
+          im.addEventListener('error',function(){im.classList.add('loaded');}); }
+  });
+  var lb=document.getElementById('lightbox'),
+      lbImg=document.getElementById('lb-img'),
+      lbCap=document.getElementById('lb-cap');
+  function openLb(im){
+    lbImg.src=im.currentSrc||im.src; lbImg.alt=im.alt||'';
+    var fig=im.closest('figure'), cap=fig?fig.querySelector('figcaption'):null;
+    lbCap.innerHTML=cap?cap.innerHTML:''; lbCap.style.display=cap?'':'none';
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  imgs.forEach(function(im){ im.addEventListener('click',function(){openLb(im);}); });
+  lb.addEventListener('click',function(e){ if(e.target!==lbImg) closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+})();
+</script>
 </body>
 </html>
