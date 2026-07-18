@@ -16,14 +16,14 @@
     --line:rgba(44,36,29,.16); --line-soft:rgba(44,36,29,.09);
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{-webkit-text-size-adjust:100%;overflow-x:hidden;}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-behavior:smooth;}
   body{
     font-family:"Newsreader",Georgia,serif; color:var(--ink);
     background:
       radial-gradient(120% 80% at 80% -10%, rgba(196,152,63,.18), transparent 55%),
       radial-gradient(120% 90% at -10% 5%, rgba(116,47,47,.10), transparent 50%),
       var(--paper);
-    background-attachment:fixed; line-height:1.5; font-size:17px; letter-spacing:.1px;
+    background-attachment:fixed; line-height:1.62; font-size:17px; letter-spacing:.1px;
     padding:0 0 60px; overflow-x:hidden;
   }
   img{max-width:100%;}
@@ -73,7 +73,7 @@
   .daynav a.concert-pill.on{background:var(--sage);border-color:var(--sage);color:#fbf6ec;}
 
   /* day entry */
-  .day-entry{margin-top:8px;padding-top:38px;border-top:1px solid var(--line);}
+  .day-entry{margin-top:8px;padding-top:46px;border-top:1px solid var(--line);}
   .day-entry:first-of-type{border-top:none;padding-top:0;}
   .day-date{
     font-family:"Fraunces",serif;font-style:italic;font-size:14px;color:var(--terra);
@@ -81,9 +81,9 @@
   }
   .day-title{
     font-family:"Fraunces",serif;font-weight:500;font-size:29px;letter-spacing:-.01em;
-    color:var(--ink);margin-bottom:16px;
+    color:var(--ink);margin-bottom:20px;
   }
-  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:14px;}
+  .day-entry p{font-size:16.5px;color:var(--ink-soft);margin-bottom:20px;line-height:1.72;}
   .day-entry p b{color:var(--ink);font-weight:500;}
   .day-entry p:last-of-type{margin-bottom:0;}
 
@@ -162,12 +162,73 @@
   #concert .listen{margin:10px 0 22px;}
   #concert .listen audio{width:100%;max-width:560px;display:block;}
   #concert .listen .listen-label{display:block;margin-top:4px;font-size:13.5px;font-style:italic;color:var(--ink-soft);}
+  /* --- enhancements --- */
+  .day-entry{scroll-margin-top:64px;}
+  #top{scroll-margin-top:0;}
+
+  .day-foot{
+    display:flex;align-items:center;margin-top:34px;
+    border-top:1px solid var(--line-soft);padding-top:16px;
+    font-family:"Newsreader",serif;font-style:italic;font-size:14px;
+  }
+  .day-foot a{color:var(--wine);text-decoration:none;transition:color .15s ease;}
+  .day-foot a:hover{color:var(--wine-deep);}
+  .day-foot .df-prev{flex:1;text-align:left;}
+  .day-foot .df-next{flex:1;text-align:right;}
+  .day-foot .df-mid{flex:0 0 auto;text-align:center;padding:0 14px;white-space:nowrap;}
+  .day-foot .df-mid::before{content:"↑";font-style:normal;margin-right:5px;font-size:13px;}
+
+  .gallery figure,.inline-figure{background:var(--paper-2);}
+  .gallery img.ph,.inline-figure img.ph{opacity:0;transition:opacity .55s ease;}
+  .gallery img.ph.loaded,.inline-figure img.ph.loaded{opacity:1;}
+  .gallery img,.inline-figure img{cursor:zoom-in;}
+
+  .lightbox{
+    position:fixed;inset:0;z-index:100;display:none;
+    align-items:center;justify-content:center;padding:24px;cursor:zoom-out;
+    background:rgba(28,22,17,.92);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  }
+  .lightbox.open{display:flex;}
+  .lightbox figure{
+    background:transparent;border:none;box-shadow:none;border-radius:0;
+    max-width:min(1100px,100%);max-height:100%;
+    display:flex;flex-direction:column;align-items:center;margin:0;overflow:visible;
+  }
+  .lightbox img{
+    max-width:100%;max-height:82vh;width:auto;height:auto;object-fit:contain;
+    border-radius:3px;box-shadow:0 20px 60px -20px rgba(0,0,0,.7);cursor:default;
+  }
+  .lightbox figcaption{
+    color:#e9ddc9;font-style:italic;font-size:14px;text-align:center;
+    padding:14px 8px 0;line-height:1.4;max-width:760px;
+  }
+  .lightbox figcaption a{color:#e9ddc9;}
+  .lb-close{
+    position:absolute;top:14px;right:20px;background:none;border:none;
+    color:#f6efe1;font-size:34px;line-height:1;cursor:pointer;font-family:"Newsreader",serif;
+  }
+
+  @media print{
+    html{scroll-behavior:auto;}
+    body{background:#fff !important;color:#000;}
+    .topbar,.daynav,.day-foot,.lightbox,.room-nav-btn,.room-dots,.room-hint{display:none !important;}
+    .wrap{max-width:100%;padding:0;}
+    .day-entry{page-break-before:always;border-top:none;padding-top:0;margin-top:0;}
+    .day-entry:first-of-type{page-break-before:avoid;}
+    .gallery{column-count:1;}
+    .gallery figure,.inline-figure{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
+    .gallery img.ph,.inline-figure img.ph{opacity:1 !important;}
+    /* unfold the museum rooms carousel for print */
+    .rooms-track{display:block;overflow:visible;border:none;box-shadow:none;}
+    .room-panel{flex:none;max-height:none;overflow:visible;border-right:none;page-break-inside:avoid;padding:8px 0 18px;}
+    a{color:inherit;text-decoration:none;}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="topbar">
+  <div class="topbar" id="top">
     <a class="tb-back" href="journal.html">&larr;&nbsp;Journal</a>
     <span class="tb-brand">Notes</span>
   </div>
@@ -179,9 +240,9 @@
   </header>
 
   <nav class="daynav">
-    <a href="#museum" class="on museum-pill">Museum Notes</a>
-    <a href="#concert" class="on concert-pill">Concert Notes</a>
-    <a href="#wine" class="on wine-pill">Wine Notes</a>
+    <a href="#museum" class="museum-pill">Museum Notes</a>
+    <a href="#concert" class="concert-pill">Concert Notes</a>
+    <a href="#wine" class="wine-pill">Wine Notes</a>
   </nav>
 
   <!-- ===== MUSEUM NOTES ===== -->
@@ -235,6 +296,11 @@
     <p>At Osteria al Guerriero in Arquà Petrarca: an <b>Alla Costiera Biancone</b> (Veneto Tai Bianco IGT) alongside the lasagne, and the <b>Terregaie "Alberto" Metodo Classico</b> with the anchovy pasta — the local sparkling habit holding firm to the very last dinner.</p>
 
     <p>Final count for the extra suitcase: the Farina Valpolicella, Monte Fasolo's spumante and 24 Mesi, Vignalta's Carmenère Riserva and Cabernet Riserva 2011 — plus a bottle of estate olive oil riding shotgun.</p>
+    <nav class="day-foot">
+      <span class="df-prev"></span>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#museum">Museum Notes →</a>
+    </nav>
   </section>
 
   <section class="day-entry" id="museum">
@@ -410,6 +476,11 @@
 
     <div class="room-dots" id="roomDots"></div>
     <div class="room-hint">swipe or use the arrows to move room to room</div>
+    <nav class="day-foot">
+      <a class="df-prev" href="#wine">← Wine Notes</a>
+      <a class="df-mid" href="#top">Top</a>
+      <a class="df-next" href="#concert">Concert Notes →</a>
+    </nav>
   </section>
 
   <!-- ===== CONCERT NOTES ===== -->
@@ -436,9 +507,18 @@
  <p><b>The Three Composers</b>
     <p>Strauss and Dvořák both belonged to the so-called "New German" school, which held that music should tell a literal story; Brahms stood for the opposing "absolute music" camp, insisting a symphony could and should stand on pure form with no narrative attached. Putting all three back to back on one program plays that old rivalry out in real time, while making the case that both sides were chasing the same thing — big, unguarded orchestral feeling — by different routes.</p>
 
-    <p>The personal dynamics underneath that split are its own story. Brahms and Dvořák were the warm relationship: Brahms sat on the jury that awarded Dvořák the Austrian State Stipendium in the 1870s, was startled by how good the unknown Bohemian's submissions were, and used his own standing to push his publisher, Simrock, to take Dvořák on — the deal that produced the <i>Slavonic Dances</i> and effectively launched Dvořák internationally. It wasn't just a professional favor either; Brahms proofread Dvořák's scores, lent him money at points, and by most accounts the friendship stayed genuinely affectionate for the rest of Brahms's life, despite Brahms being a lifelong bachelor with little patience for religion and Dvořák a devoutly Catholic family man — an odd-couple friendship that worked anyway. Strauss's relationship with Brahms ran colder. As a teenager Strauss was steeped in Brahms's style by his father, a conservative horn player who idolized Brahms and distrusted the Wagner camp on principle; the young Strauss dutifully wrote in a Brahmsian idiom for years, and even showed Brahms an early symphony in person, only to reportedly get fairly blunt, unimpressed feedback back. Not long after, under the influence of the conductor and composer Alexander Ritter, Strauss defected wholesale to the Liszt–Wagner "New German" camp Brahms had spent his career defining himself against — which makes <i>Don Juan</i>, the piece on this very program, basically Strauss's declaration of independence from the style his father raised him on. Dvořák and Strauss, by contrast, barely factor into each other's story directly — mutual respect from a distance, two composers on the same side of the programmatic-music divide without much personal history to speak of. So the program isn't just a philosophical rivalry laid out side by side; it's also, quietly, a mentor who got it right (Brahms and Dvořák) sitting next to a mentorship that didn't take (Brahms and Strauss).</p>
+    <p>The personal dynamics underneath that split are its own story. Brahms and Dvořák were the warm relationship: Brahms sat on the jury that awarded Dvořák the Austrian State Stipendium in the 1870s, was startled by how good the unknown Bohemian's submissions were, and used his own standing to push his publisher, Simrock, to take Dvořák on — the deal that produced the <i>Slavonic Dances</i> and effectively launched Dvořák internationally. It wasn't just a professional favor either; Brahms proofread Dvořák's scores, lent him money at points, and by most accounts the friendship stayed genuinely affectionate for the rest of Brahms's life, despite Brahms being a lifelong bachelor with little patience for religion and Dvořák a devoutly Catholic family man — an odd-couple friendship that worked anyway.</p>
+
+    <p>Strauss's relationship with Brahms ran colder. As a teenager Strauss was steeped in Brahms's style by his father, a conservative horn player who idolized Brahms and distrusted the Wagner camp on principle; the young Strauss dutifully wrote in a Brahmsian idiom for years, and even showed Brahms an early symphony in person, only to reportedly get fairly blunt, unimpressed feedback back. Not long after, under the influence of the conductor and composer Alexander Ritter, Strauss defected wholesale to the Liszt–Wagner "New German" camp Brahms had spent his career defining himself against — which makes <i>Don Juan</i>, the piece on this very program, basically Strauss's declaration of independence from the style his father raised him on.</p>
+
+    <p>Dvořák and Strauss, by contrast, barely factor into each other's story directly — mutual respect from a distance, two composers on the same side of the programmatic-music divide without much personal history to speak of. So the program isn't just a philosophical rivalry laid out side by side; it's also, quietly, a mentor who got it right (Brahms and Dvořák) sitting next to a mentorship that didn't take (Brahms and Strauss).</p>
 
     <p>And as a debut program specifically, it's a shrewd piece of self-scouting — <i>Don Juan</i> tests the orchestra's raw speed and the horn section, <i>Polednice</i> asks the woodwinds to act like a theater troupe conjuring dread out of nothing, and the Brahms demands the kind of warm, unified string tone that can't be faked. Three pieces, three different muscles, all flexed in front of a new audience — about as close as classical music gets to a job interview.</p>
+    <nav class="day-foot">
+      <a class="df-prev" href="#museum">← Museum Notes</a>
+      <a class="df-mid" href="#top">Top</a>
+      <span class="df-next"></span>
+    </nav>
   </section>
 
   <footer>
@@ -476,6 +556,44 @@
   document.getElementById('roomNext').addEventListener('click', function(){
     track.scrollBy({left: track.clientWidth, behavior: 'smooth'});
   });
+})();
+</script>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <figure><img id="lb-img" src="" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+<script>
+(function(){
+  var days=[].slice.call(document.querySelectorAll('.day-entry'));
+  var pills={};
+  document.querySelectorAll('.daynav a[href^="#"]').forEach(function(a){ pills[a.getAttribute('href').slice(1)]=a; });
+  function onScroll(){
+    var y=window.pageYOffset+140, cur=days.length?days[0].id:null;
+    days.forEach(function(d){ if(d.offsetTop<=y) cur=d.id; });
+    var nav=document.querySelector('.daynav');
+    for(var id in pills){ var on=id===cur; pills[id].classList.toggle('on', on);
+      if(on && nav){ var pp=pills[id]; nav.scrollLeft=pp.offsetLeft-nav.clientWidth/2+pp.clientWidth/2; } }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  document.addEventListener('DOMContentLoaded', onScroll);
+  onScroll();
+})();
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('.gallery img,.inline-figure img'));
+  imgs.forEach(function(im){ im.classList.add('ph');
+    if(im.complete && im.naturalWidth) im.classList.add('loaded');
+    else{ im.addEventListener('load',function(){im.classList.add('loaded');});
+          im.addEventListener('error',function(){im.classList.add('loaded');}); } });
+  var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbCap=document.getElementById('lb-cap');
+  function openLb(im){ lbImg.src=im.currentSrc||im.src; lbImg.alt=im.alt||'';
+    var fig=im.closest('figure'),cap=fig?fig.querySelector('figcaption'):null;
+    lbCap.innerHTML=cap?cap.innerHTML:''; lbCap.style.display=cap?'':'none';
+    lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  imgs.forEach(function(im){ im.addEventListener('click',function(){openLb(im);}); });
+  lb.addEventListener('click',function(e){ if(e.target!==lbImg) closeLb(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
 })();
 </script>
 </body>
