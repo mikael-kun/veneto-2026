@@ -100,6 +100,14 @@ h1.title em{font-style:italic;color:var(--wine);}
 .inline-figure img{display:block;width:100%;height:auto;}
 .inline-figure figcaption{font-size:13px;font-style:italic;color:var(--ink-soft);padding:9px 12px 11px;line-height:1.4;}
 
+/* section divider */
+hr.sect-div {
+  height: 2px;
+  background: var(--line);
+  border: none;
+  margin: 2rem 0;
+}
+
 footer{margin-top:50px;text-align:center;color:var(--ink-soft);font-style:italic;font-size:14px;}
 footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 
