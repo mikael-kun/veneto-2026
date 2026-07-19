@@ -154,7 +154,7 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 }
 .daynav a.wine-pill{border-color:var(--ochre);color:var(--ochre);}
 .daynav a.wine-pill.on{background:var(--ochre);border-color:var(--ochre);color:#fbf6ec;}
-#wine h3{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:26px 0 10px;color:var(--wine-deep);}
+.day-entry h3{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:26px 0 10px;color:var(--wine-deep);}
 #wine .spec{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:var(--ink-soft);font-style:italic;}
 #wine .spec a{color:var(--terra);text-decoration:none;border-bottom:1px dotted var(--terra);font-style:normal;}
 #concert .listen{margin:10px 0 22px;}
