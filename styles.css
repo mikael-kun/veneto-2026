@@ -184,17 +184,18 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 .day-entry{scroll-margin-top:64px;}
 #top{scroll-margin-top:0;}
 
-.day-foot{
-  display:flex;align-items:center;margin-top:34px;
-  border-top:1px solid var(--line-soft);padding-top:16px;
+.day-foot,.day-head{
+  display:flex;align-items:center;
   font-family:"Newsreader",serif;font-style:italic;font-size:14px;
 }
-.day-foot a{color:var(--wine);text-decoration:none;transition:color .15s ease;}
-.day-foot a:hover{color:var(--wine-deep);}
-.day-foot .df-prev{flex:1;text-align:left;}
-.day-foot .df-next{flex:1;text-align:right;}
-.day-foot .df-mid{flex:0 0 auto;text-align:center;padding:0 14px;white-space:nowrap;}
-.day-foot .df-mid::before{content:"↑";font-style:normal;margin-right:5px;font-size:13px;}
+.day-foot{margin-top:34px;border-top:1px solid var(--line-soft);padding-top:16px;}
+.day-head{margin:-6px 0 26px;border-bottom:1px solid var(--line-soft);padding-bottom:14px;}
+.day-foot a,.day-head a{color:var(--wine);text-decoration:none;transition:color .15s ease;}
+.day-foot a:hover,.day-head a:hover{color:var(--wine-deep);}
+.day-foot .df-prev,.day-head .df-prev{flex:1;text-align:left;}
+.day-foot .df-next,.day-head .df-next{flex:1;text-align:right;}
+.day-foot .df-mid,.day-head .df-mid{flex:0 0 auto;text-align:center;padding:0 14px;white-space:nowrap;}
+.day-foot .df-mid::before,.day-head .df-mid::before{content:"↑";font-style:normal;margin-right:5px;font-size:13px;}
 
 .gallery figure,.inline-figure{background:var(--paper-2);}
 .gallery img.ph,.inline-figure img.ph,.ticket-hero img.ph{opacity:0;transition:opacity .55s ease;}
@@ -229,7 +230,7 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 @media print{
   html{scroll-behavior:auto;}
   body{background:#fff !important;color:#000;}
-  .topbar,.daynav,.day-foot,.lightbox,.room-nav-btn,.room-dots,.room-hint{display:none !important;}
+  .topbar,.daynav,.day-foot,.day-head,.lightbox,.room-nav-btn,.room-dots,.room-hint{display:none !important;}
   .wrap{max-width:100%;padding:0;}
   .day-entry{page-break-before:always;border-top:none;padding-top:0;margin-top:0;}
   .day-entry:first-of-type{page-break-before:avoid;}
