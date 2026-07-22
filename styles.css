@@ -99,6 +99,8 @@ h1.title em{font-style:italic;color:var(--wine);}
 }
 .inline-figure img{display:block;width:100%;height:auto;}
 .inline-figure figcaption{font-size:13px;font-style:italic;color:var(--ink-soft);padding:9px 12px 11px;line-height:1.4;}
+/* plate: for illustrations below full column resolution — inset rather than stretched */
+.inline-figure.plate{max-width:420px;margin-left:auto;margin-right:auto;}
 
 /* ticket mini-heros (museum sections) */
 .ticket-hero{
