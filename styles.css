@@ -61,6 +61,8 @@ h1.title em{font-style:italic;color:var(--wine);}
 .daynav a.museum-pill.on{background:var(--terra);border-color:var(--terra);color:#fbf6ec;}
 .daynav a.concert-pill{border-color:var(--sage);color:var(--sage);}
 .daynav a.concert-pill.on{background:var(--sage);border-color:var(--sage);color:#fbf6ec;}
+.daynav a.bo-pill{border-color:var(--wine);color:var(--wine);}
+.daynav a.bo-pill.on{background:var(--wine);border-color:var(--wine);color:#fbf6ec;}
 
 /* day entry */
 .day-entry{margin-top:8px;padding-top:46px;border-top:1px solid var(--line);}
@@ -150,6 +152,11 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 .room-title{
   font-family:"Fraunces",serif;font-weight:500;font-size:22px;letter-spacing:-.01em;
   color:var(--ink);margin-bottom:14px;
+}
+/* room titles are <h3> for semantics — beat the generic .day-entry h3 rule */
+.day-entry h3.room-title{
+  font-family:"Fraunces",serif;font-weight:500;font-size:22px;letter-spacing:-.01em;
+  color:var(--ink);margin:0 0 14px;
 }
 .room-panel p{font-size:15.5px;color:var(--ink-soft);margin-bottom:13px;line-height:1.55;}
 .room-panel p:last-of-type{margin-bottom:0;}
