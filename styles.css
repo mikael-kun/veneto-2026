@@ -171,6 +171,10 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 .daynav a.wine-pill{border-color:var(--ochre);color:var(--ochre);}
 .daynav a.wine-pill.on{background:var(--ochre);border-color:var(--ochre);color:#fbf6ec;}
 .day-entry h3{font-family:"Fraunces",serif;font-size:19px;font-weight:600;margin:26px 0 10px;color:var(--wine-deep);}
+.day-entry h4{font-family:"Fraunces",serif;font-size:15px;font-weight:500;font-style:italic;margin:18px 0 7px;color:var(--terra);letter-spacing:.02em;}
+.day-entry h3 + p,.day-entry h4 + p{margin-top:0;}
+.day-entry a.qr-link{color:var(--terra);text-decoration:none;border-bottom:1px dotted var(--terra);}
+.day-entry a.qr-link:hover{color:var(--wine);border-bottom-color:var(--wine);}
 #wine .spec{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:var(--ink-soft);font-style:italic;}
 #wine .spec a{color:var(--terra);text-decoration:none;border-bottom:1px dotted var(--terra);font-style:normal;}
 #concert .listen{margin:10px 0 22px;}
@@ -193,9 +197,9 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
 .day-foot .df-mid::before{content:"↑";font-style:normal;margin-right:5px;font-size:13px;}
 
 .gallery figure,.inline-figure{background:var(--paper-2);}
-.gallery img.ph,.inline-figure img.ph{opacity:0;transition:opacity .55s ease;}
-.gallery img.ph.loaded,.inline-figure img.ph.loaded{opacity:1;}
-.gallery img,.inline-figure img{cursor:zoom-in;}
+.gallery img.ph,.inline-figure img.ph,.ticket-hero img.ph{opacity:0;transition:opacity .55s ease;}
+.gallery img.ph.loaded,.inline-figure img.ph.loaded,.ticket-hero img.ph.loaded{opacity:1;}
+.gallery img,.inline-figure img,.ticket-hero img{cursor:zoom-in;}
 
 .lightbox{
   position:fixed;inset:0;z-index:100;display:none;
@@ -231,7 +235,9 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   .day-entry:first-of-type{page-break-before:avoid;}
   .gallery{column-count:1;}
   .gallery figure,.inline-figure{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
+  .ticket-hero{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
   .gallery img.ph,.inline-figure img.ph{opacity:1 !important;}
+  .ticket-hero img.ph{opacity:1 !important;}
   .rooms-track{display:block;overflow:visible;border:none;box-shadow:none;}
   .room-panel{flex:none;max-height:none;overflow:visible;border-right:none;page-break-inside:avoid;padding:8px 0 18px;}
   a{color:inherit;text-decoration:none;}
