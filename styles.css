@@ -103,6 +103,11 @@ h1.title em{font-style:italic;color:var(--wine);}
 .inline-figure figcaption{font-size:13px;font-style:italic;color:var(--ink-soft);padding:9px 12px 11px;line-height:1.4;}
 /* plate: for illustrations below full column resolution — inset rather than stretched */
 .inline-figure.plate{max-width:420px;margin-left:auto;margin-right:auto;}
+/* biennale-strip: decorative section-ender — a panorama of historic Biennale posters.
+   inherits the inline-figure frame; only tweaks spacing + centres the caption.
+   left/right margins are left untouched so the wide-viewport breakout still applies. */
+.biennale-strip{margin-top:38px;}
+.biennale-strip figcaption{text-align:center;}
 
 /* ticket mini-heros (museum sections) */
 .ticket-hero{
