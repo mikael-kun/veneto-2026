@@ -122,15 +122,20 @@ h1.title em{font-style:italic;color:var(--wine);}
    Adds a restrained museum-style rule beneath the image.
    Left/right margins are left untouched so wide-viewport breakouts still apply. */
 .ending-element img{
-    display:block;
-    width:100%;
-    height:auto;
-
-    box-shadow:
-        0 1px 0 rgba(255,255,255,.5) inset,
-        0 6px 18px rgba(0,0,0,.10);
-
-    border-radius:2px;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black 4%,
+        black 96%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black 4%,
+        black 96%,
+        transparent 100%
+    );
 }
 
 .ending-element figcaption{
