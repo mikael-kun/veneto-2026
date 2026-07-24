@@ -5,6 +5,7 @@
   --terra:#bd6b35; --ochre:#c4983f; --sage:#6c7152;
   --line:rgba(44,36,29,.16); --line-soft:rgba(44,36,29,.09);
 }
+
 *{box-sizing:border-box;margin:0;padding:0;}
 html{-webkit-text-size-adjust:100%;overflow-x:hidden;scroll-behavior:smooth;}
 body{
