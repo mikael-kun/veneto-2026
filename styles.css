@@ -114,6 +114,28 @@ h1.title em{font-style:italic;color:var(--wine);}
    left/right margins are left untouched so the wide-viewport breakout still applies. */
 .biennale-strip{margin-top:38px;}
 .biennale-strip figcaption{text-align:center;}
+/* plate: for illustrations below full column resolution — inset rather than stretched */
+.inline-figure.plate{max-width:420px;margin-left:auto;margin-right:auto;}
+
+/* ending-element: decorative section-ender.
+   Adds a restrained museum-style rule beneath the image.
+   Left/right margins are left untouched so wide-viewport breakouts still apply. */
+.ending-element::after{
+  content:"";
+  display:block;
+  width:72px;
+  height:1px;
+  margin:14px auto 0;
+  background:var(--ink-soft);
+}
+
+.ending-element figcaption{
+  display:none;
+}
+
+.ending-element{
+  margin-top:38px;
+}
 
 /* ticket mini-heros (museum sections) */
 .ticket-hero{
