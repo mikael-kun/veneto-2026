@@ -93,6 +93,12 @@ h1.title em{font-style:italic;color:var(--wine);}
   font-size:12.5px;font-style:italic;color:var(--ink-soft);padding:8px 10px 10px;line-height:1.35;
 }
 @media (max-width:420px){ .gallery{column-count:2;column-gap:8px;} .gallery figure{margin-bottom:8px;} }
+/* iOS Safari (WebKit) paints a stray drop-shadow into the top of the NEXT
+   column at multi-column break points — a ghost of the shadow belonging to
+   the figure that ended the previous column. Promoting each tile to its own
+   paint layer makes WebKit clip the shadow to its own box, killing the ghost.
+   No visual effect on Chrome/Firefox, where the bug doesn't occur. */
+.gallery figure{transform:translateZ(0);}
 
 /* inline figures within prose */
 .inline-figure{
