@@ -121,12 +121,13 @@ h1.title em{font-style:italic;color:var(--wine);}
    Adds a restrained museum-style rule beneath the image.
    Left/right margins are left untouched so wide-viewport breakouts still apply. */
 .ending-element::after{
-  content:"";
-  display:block;
-  width:72px;
-  height:1px;
-  margin:14px auto 0;
-  background:var(--ink-soft);
+    content:"◆";
+    display:block;
+    text-align:center;
+    margin-top:18px;
+    font-size:8px;
+    color:rgba(68,56,38,.30);
+    line-height:1;
 }
 
 .ending-element figcaption{
