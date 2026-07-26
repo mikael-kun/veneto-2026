@@ -82,25 +82,20 @@ h1.title em{font-style:italic;color:var(--wine);}
 
 /* gallery */
 .gallery{
-  margin-top:24px; column-count:2; column-gap:10px;
+  margin-top:24px; margin-bottom:30px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
 }
 .gallery figure{
-  break-inside:avoid; margin:0 0 10px; background:var(--card);
+  margin:0; background:var(--card); display:flex; flex-direction:column;
   border:1px solid var(--line-soft); border-radius:3px; overflow:hidden;
   box-shadow:0 1px 0 rgba(255,255,255,.5) inset, 0 8px 20px -16px rgba(44,36,29,.5);
 }
 .gallery img{display:block;width:100%;height:auto;}
 .gallery figcaption{
   font-size:12.5px;font-style:italic;color:var(--ink-soft);padding:8px 10px 10px;line-height:1.35;
+  flex:1 1 auto;
 }
-@media (max-width:420px){ .gallery{column-count:2;column-gap:8px;} .gallery figure{margin-bottom:8px;} }
-/* iOS Safari (WebKit) paints a stray drop-shadow into the top of the NEXT
-   column at multi-column break points — a ghost of the shadow belonging to
-   the figure that ended the previous column. Promoting each tile to its own
-   paint layer makes WebKit clip the shadow to its own box, killing the ghost.
-   No visual effect on Chrome/Firefox, where the bug doesn't occur. */
-.gallery figure{transform:translateZ(0);}
-
+@media (max-width:420px){ .gallery{grid-template-columns:repeat(2,1fr);gap:8px;} }
 /* inline figures within prose */
 .inline-figure{
   margin:18px 0; background:var(--card); border:1px solid var(--line-soft); border-radius:3px;
@@ -302,7 +297,7 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   .day-entry > .ticket-hero{
     width:900px;margin-left:-130px;margin-right:-130px;
   }
-  .day-entry > .gallery{column-count:3;column-gap:12px;}
+  .day-entry > .gallery{grid-template-columns:repeat(3,1fr);gap:12px;}
 }
 @media (min-width:1500px){
   .day-entry > .gallery,
@@ -336,7 +331,7 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   .wrap{max-width:100%;padding:0;}
   .day-entry{page-break-before:always;border-top:none;padding-top:0;margin-top:0;}
   .day-entry:first-of-type{page-break-before:avoid;}
-  .gallery{column-count:1;}
+  .gallery{grid-template-columns:1fr;}
   .gallery figure,.inline-figure{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
   .ticket-hero{break-inside:avoid;box-shadow:none;border:1px solid #ddd;}
   .gallery img.ph,.inline-figure img.ph{opacity:1 !important;}
