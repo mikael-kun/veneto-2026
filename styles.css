@@ -312,23 +312,22 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   }
 }
 
-/* day colophon — Lion of St Mark closing each day, like a book's end-of-chapter device.
-   A centred mark flanked by thin rules. Sits inside .day-entry so it prints per page. */
+/* day colophon — two-tone Lion of St Mark closing each day, like a book's end device.
+   Centred seal between two thin rules. The lion carries its own fills (wine disc,
+   cream figure), so no fill inheritance is needed across the <use> boundary. */
 .day-colophon{
-  display:flex;align-items:center;justify-content:center;gap:18px;
-  margin:44px auto 4px;max-width:340px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  width:340px;max-width:80%;margin:46px auto 6px;
 }
-.day-colophon::before,.day-colophon::after{
-  content:"";flex:1;height:1px;
-  background:linear-gradient(to var(--dir,right),transparent,var(--line));
+.day-colophon .dc-rule{
+  flex:1 1 auto;height:1px;background:var(--line);
 }
-.day-colophon::before{--dir:left;}
 .day-colophon .lion-mark{
-  flex:0 0 auto;width:44px;height:44px;
-  fill:var(--wine);opacity:.72;transition:opacity .2s ease;
+  flex:0 0 auto;width:46px;height:46px;
+  opacity:.9;transition:opacity .2s ease;
 }
-.day-colophon:hover .lion-mark{opacity:.9;}
-.day-entry:last-of-type .day-colophon{margin-bottom:8px;}
+.day-colophon:hover .lion-mark{opacity:1;}
+.day-entry:last-of-type .day-colophon{margin-bottom:10px;}
 
 @media print{
   html{scroll-behavior:auto;}
@@ -343,7 +342,7 @@ footer .fl{height:1px;width:50px;background:var(--line);margin:0 auto 16px;}
   .gallery img.ph,.inline-figure img.ph{opacity:1 !important;}
   .ticket-hero img.ph{opacity:1 !important;}
   .rooms-track{display:block;overflow:visible;border:none;box-shadow:none;}
-  .day-colophon .lion-mark{opacity:.85 !important;}
+  .day-colophon .lion-mark{opacity:1 !important;}
   .room-panel{flex:none;max-height:none;overflow:visible;border-right:none;page-break-inside:avoid;padding:8px 0 18px;}
   a{color:inherit;text-decoration:none;}
 }
